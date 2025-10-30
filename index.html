@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hlubiny</title>
+    <meta name="description" content="Personal website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <a href="#" class="brand-link">Hlubiny</a>
+        </div>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <h1>Welcome to Hlubiny</h1>
+          <p>A clean, fast, and minimal website you can publish via GitHub Pages.</p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="gradient-bg" aria-hidden="true"></div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About</h2>
+          <p>
+            Replace this text with your own introduction. This template is
+            lightweight and uses just HTML/CSS/JS, perfect for GitHub Pages.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section alt">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="cards">
+            <article class="card">
+              <h3>Project One</h3>
+              <p>Short description of your first project.</p>
+              <a class="card-link" href="#">Learn more →</a>
+            </article>
+            <article class="card">
+              <h3>Project Two</h3>
+              <p>Short description of your second project.</p>
+              <a class="card-link" href="#">Learn more →</a>
+            </article>
+            <article class="card">
+              <h3>Project Three</h3>
+              <p>Short description of your third project.</p>
+              <a class="card-link" href="#">Learn more →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Contact</h2>
+          <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send</button>
+            <p id="form-status" role="status" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Hlubiny. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+
