@@ -1,5 +1,5 @@
 :root {
-  --text: #e6e8f0;
+  --text: #cfe7c5;
   --muted: #b9c3cf;
   --border: rgba(255,255,255,0.08);
   --header-h: 72px;
@@ -13,14 +13,40 @@
   --tex-ov3-opacity: 0.06;
 }
 
+/* Self-hosted fonts */
+@font-face {
+  font-family: "Archivo";
+  src: url("./fonts/Archivo_SemiExpanded-Light.woff2") format("woff2");
+  font-weight: 300; /* Light */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: url("./fonts/Archivo_SemiExpanded-SemiBold.woff2") format("woff2");
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PicNic";
+  src: url("./fonts/PicNic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 * { box-sizing: border-box; }
 
 html, body { margin: 0; padding: 0; }
 
 body {
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Oxygen,
+  font-family: "Archivo", Inter, system-ui, -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     sans-serif;
+  font-weight: 300; /* default to Light */
   background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
   color: var(--text);
   line-height: 1.6;
@@ -28,6 +54,9 @@ body {
   scroll-behavior: smooth;
   position: relative; /* anchor world-space overlays */
 }
+
+/* Optional utility to use PicNic where desired */
+.font-picnic { font-family: "PicNic", "Archivo", system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
 
 /* Texture overlay stack */
 .texture {
@@ -66,27 +95,33 @@ body {
   position: sticky;
   top: 0;
   height: var(--header-h);
-  backdrop-filter: saturate(180%) blur(8px);
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid var(--border);
+  backdrop-filter: none;
+  background: transparent;
+  border-bottom: none;
   z-index: 20;
 }
 
-.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.header-inner { position: relative; display: flex; align-items: center; justify-content: flex-end; padding: 14px 0; }
 
-.brand-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.3px; }
+.brand { position: absolute; left: 50%; transform: translateX(-50%); }
+.brand-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.3px; font-family: "PicNic", "Archivo", system-ui, -apple-system, Segoe UI, Arial, sans-serif; font-size: 2rem; }
 
 .nav { position: relative; }
 .nav-link { color: var(--muted); text-decoration: none; margin-left: 18px; }
 .nav-link:hover { color: var(--text); }
+
+/* Simple header button style */
+.nav-link.btn { padding: 6px 12px; border: none; border-radius: 8px; }
 
 /* Anchor offset for fixed header */
 section { scroll-margin-top: calc(var(--header-h) + 16px); }
 
 /* Page sections sized to ~6000px total */
 .section { padding: 64px 0; }
+.section .container { text-align: center; }
 .section-about { min-height: 1800px; display: flex; align-items: center; }
-.section-creatures { min-height: 2600px; display: flex; align-items: center; }
+.section-how { min-height: 2200px; display: flex; align-items: center; }
+.section-approach { min-height: 1400px; display: flex; align-items: center; }
 .section-contact { min-height: 1600px; display: flex; align-items: center; }
 
 /* Bubbles layer */
