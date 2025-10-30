@@ -149,6 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bubblesLayer) return;
     const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
     bubblesLayer.style.height = `${h}px`;
+    // Match world height for texture overlays as well
+    document.querySelectorAll('.texture').forEach((el) => {
+      el.style.height = `${h}px`;
+    });
   }
   sizeBubblesLayer();
   // Prewarm natural spacing across entire document height

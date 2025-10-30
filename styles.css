@@ -6,6 +6,11 @@
   --g1: #1f2228; /* dark */
   --g2: #3a4c61; /* mid */
   --g3: #7493ac; /* light */
+  /* texture opacities */
+  --tex-screen-opacity: 0.12;
+  --tex-ov1-opacity: 0.10;
+  --tex-ov2-opacity: 0.08;
+  --tex-ov3-opacity: 0.06;
 }
 
 * { box-sizing: border-box; }
@@ -21,6 +26,38 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   scroll-behavior: smooth;
+  position: relative; /* anchor world-space overlays */
+}
+
+/* Texture overlay stack */
+.texture {
+  position: absolute; /* world-space: scrolls with document */
+  inset: 0;
+  pointer-events: none;
+  z-index: 12; /* above bubbles (5), below header (20) */
+  background-position: top left;
+  background-repeat: repeat;
+  background-size: 512px 512px; /* tiling grain */
+}
+.texture-screen {
+  mix-blend-mode: lighten;
+  opacity: var(--tex-screen-opacity);
+  background-image: url('./graphics/texture/00_screen.png');
+}
+.texture-ov1 {
+  mix-blend-mode: overlay;
+  opacity: var(--tex-ov1-opacity);
+  background-image: url('./graphics/texture/01_overlay.png');
+}
+.texture-ov2 {
+  mix-blend-mode: overlay;
+  opacity: var(--tex-ov2-opacity);
+  background-image: url('./graphics/texture/02_overlay2.png');
+}
+.texture-ov3 {
+  mix-blend-mode: overlay;
+  opacity: var(--tex-ov3-opacity);
+  background-image: url('./graphics/texture/03_overlay3.png');
 }
 
 .container { width: min(1100px, 92%); margin: 0 auto; }
