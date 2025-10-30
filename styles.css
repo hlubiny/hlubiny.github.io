@@ -54,22 +54,25 @@ section { scroll-margin-top: calc(var(--header-h) + 16px); }
 
 /* Bubbles layer */
 #bubbles-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
-.bubble {
+/* Animated wrapper handles rise/wiggle transforms */
+.bubble-wrap {
   position: absolute;
   bottom: -60px;
-  border-radius: 50%;
-  background: image-set(
-      url('graphics/bubble.avif') type('image/avif'),
-      url('graphics/bubble.webp') type('image/webp'),
-      url('graphics/bubble.png') type('image/png')
-    ) center / contain no-repeat,
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0.35) 45%, rgba(255,255,255,0.06) 72%);
-  opacity: 0.95;
   will-change: transform, opacity;
-  animation-name: bubble-rise, bubble-wiggle;
+  animation-name: bubble-rise;
   animation-timing-function: linear, ease-in-out;
   animation-fill-mode: forwards;
 }
+/* Inner visual node supports pointer-based push offset */
+.bubble {
+  border-radius: 50%;
+  background-color: rgba(34, 59, 79, 0.7); /* fill: #223b4f @ 70% */
+  border: 1px solid #aac6b6; /* thin outline */
+  transform: translate3d(var(--pushX, 0px), var(--pushY, 0px), 0);
+  will-change: transform;
+}
+/* Debug visuals */
+.debug-bubbles .bubble { outline: 1px dashed rgba(255,255,255,0.35); }
 @keyframes bubble-rise {
   0% { transform: translate3d(var(--bx, 0px), 0, 0) scale(var(--bs, 1)); opacity: 0; }
   5% { opacity: 0.9; }
