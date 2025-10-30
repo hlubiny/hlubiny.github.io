@@ -59,9 +59,9 @@ section { scroll-margin-top: calc(var(--header-h) + 16px); }
   bottom: -60px;
   border-radius: 50%;
   background: image-set(
-      url('graphics/bubble/bubble.avif') type('image/avif'),
-      url('graphics/bubble/bubble.webp') type('image/webp'),
-      url('graphics/bubble/bubble.png') type('image/png')
+      url('graphics/bubble.avif') type('image/avif'),
+      url('graphics/bubble.webp') type('image/webp'),
+      url('graphics/bubble.png') type('image/png')
     ) center / 100% 100% no-repeat;
   opacity: 0.95;
   will-change: transform, opacity;
