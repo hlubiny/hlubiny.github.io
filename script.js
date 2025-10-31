@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
   });
@@ -149,10 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bubblesLayer) return;
     const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
     bubblesLayer.style.height = `${h}px`;
-    // Match world height for texture overlays as well
-    document.querySelectorAll('.texture').forEach((el) => {
-      el.style.height = `${h}px`;
-    });
   }
   sizeBubblesLayer();
   // Prewarm natural spacing across entire document height
@@ -172,6 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', sizeBubblesLayer);
   window.addEventListener('load', sizeBubblesLayer);
   startSpawning();
+
+  // Noise animation is now CSS-only (no JS needed)
 
   // Verify bubble image loads; logs result to console
   (function testBubbleAsset() {
