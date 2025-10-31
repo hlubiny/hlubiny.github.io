@@ -3,8 +3,8 @@
   --muted: #b9c3cf;
   --border: rgba(255,255,255,0.08);
   --header-h: 72px;
-  --g1: #2c3044; /* dark */
-  --g2: #4e6682; /* mid */
+  --g1: #1d202e; /* dark */
+  --g2: #3a4c61; /* mid */
   --g3: #a0d0fc; /* light */
   /* texture opacities */
   --tex-screen-opacity: 0.12;
@@ -78,7 +78,7 @@ body {
   pointer-events: none;
   z-index: 12;
   mix-blend-mode: overlay;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 /* Texture overlay stack */
 
