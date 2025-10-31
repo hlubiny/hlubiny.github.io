@@ -15,10 +15,15 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
       <defs>
         <filter id="grainy" color-interpolation-filters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="1" stitchTiles="stitch">
+          <feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="2" seed="1" stitchTiles="stitch">
             <animate attributeName="seed" values="1;2;3;4;5;6;7;8;9;10" dur="0.4s" repeatCount="indefinite"/>
           </feTurbulence>
           <feColorMatrix type="saturate" values="0"/>
+          <feComponentTransfer>
+            <feFuncR type="gamma" amplitude="1" exponent="8.0" offset="0"/>
+            <feFuncG type="gamma" amplitude="1" exponent="8.0" offset="0"/>
+            <feFuncB type="gamma" amplitude="1" exponent="8.0" offset="0"/>
+          </feComponentTransfer>
         </filter>
       </defs>
     </svg>

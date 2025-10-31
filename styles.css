@@ -69,7 +69,7 @@ body {
   pointer-events: none;
   z-index: 12;
   mix-blend-mode: overlay;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 /* Texture overlay stack */
 
