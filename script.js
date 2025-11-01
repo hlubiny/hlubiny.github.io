@@ -189,9 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update gradient background size to match document height exactly
   function updateGradientSize() {
     const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
-    // Match gradient height to document height so colors align properly
+    // Match gradient height to document height exactly so colors align properly
     const gradientHeight = Math.max(7000, docHeight);
     document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
+    document.body.style.backgroundSize = `100% ${gradientHeight}px`;
   }
   
   sizeBubblesLayer();
