@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bubblesLayer = document.getElementById('bubbles-layer');
   let bubbleCount = 0;
   let spawnTimer = null;
+  let gradientHeight = 7000;
 
   function random(min, max) { return Math.random() * (max - min) + min; }
 
@@ -183,25 +184,38 @@ document.addEventListener('DOMContentLoaded', () => {
     else { startSpawning(); }
   });
 
+  function getDocumentHeight() {
+    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  }
+
+  function updateGradientHeight(nextHeight) {
+    const targetHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
+      ? nextHeight
+      : getDocumentHeight();
+    gradientHeight = Math.max(targetHeight, window.innerHeight);
+    document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
+  }
+
   // Kick off
   function sizeBubblesLayer() {
-    if (!bubblesLayer) return;
-    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-    bubblesLayer.style.height = `${h}px`;
+    const docHeight = getDocumentHeight();
+    if (bubblesLayer) {
+      bubblesLayer.style.height = `${docHeight}px`;
+    }
+    updateGradientHeight(docHeight);
   }
   
   // GPU-accelerated gradient position update via transform
   let rafId = null;
   let lastScrollY = 0;
   
-  function updateGradientPosition() {
+  function updateGradientPosition(force = false) {
     const scrollY = window.scrollY || window.pageYOffset;
     // Skip update if scroll hasn't changed (micro-optimization)
-    if (scrollY === lastScrollY) return;
+    if (!force && scrollY === lastScrollY) return;
     lastScrollY = scrollY;
     
     // Map scroll position to gradient translateY (inverse - scroll down = gradient moves up)
-    const gradientHeight = 7000;
     const maxTranslate = Math.max(0, gradientHeight - window.innerHeight);
     const translateY = -Math.min(scrollY, maxTranslate);
     
@@ -217,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start animation loop
   function startGradientAnimation() {
     if (rafId === null) {
-      updateGradientPosition(); // initial update
+      updateGradientPosition(true); // initial update
       rafId = requestAnimationFrame(tick);
     }
   }
@@ -273,11 +287,15 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
   window.addEventListener('resize', () => {
     sizeBubblesLayer();
-    updateGradientPosition(); // force immediate update on resize
+    updateGradientPosition(true); // force immediate update on resize
+  });
+  window.addEventListener('orientationchange', () => {
+    sizeBubblesLayer();
+    updateGradientPosition(true);
   });
   window.addEventListener('load', () => {
     sizeBubblesLayer();
-    updateGradientPosition(); // force immediate update on load
+    updateGradientPosition(true); // force immediate update on load
   });
   startSpawning();
 
