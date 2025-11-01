@@ -186,32 +186,55 @@ document.addEventListener('DOMContentLoaded', () => {
     bubblesLayer.style.height = `${h}px`;
   }
   
-  // Update gradient background position based on scroll
+  // GPU-accelerated gradient position update via transform
+  let rafId = null;
+  let lastScrollY = 0;
+  
   function updateGradientPosition() {
     const scrollY = window.scrollY || window.pageYOffset;
-    // Calculate how much of the gradient to reveal (based on max scroll)
-    const maxScroll = Math.max(
-      document.body.scrollHeight - window.innerHeight,
-      7000 - window.innerHeight
-    );
-    // Map scroll position to gradient position (inverse - scroll down = gradient moves up)
+    // Skip update if scroll hasn't changed (micro-optimization)
+    if (scrollY === lastScrollY) return;
+    lastScrollY = scrollY;
+    
+    // Map scroll position to gradient translateY (inverse - scroll down = gradient moves up)
     const gradientHeight = 7000;
-    const bgPosY = Math.min(scrollY, gradientHeight - window.innerHeight);
-    document.documentElement.style.setProperty('--bg-pos-y', `-${bgPosY}px`);
+    const maxTranslate = Math.max(0, gradientHeight - window.innerHeight);
+    const translateY = -Math.min(scrollY, maxTranslate);
+    
+    document.documentElement.style.setProperty('--bg-translate-y', `${translateY}px`);
+  }
+  
+  // Continuous update via requestAnimationFrame for smooth GPU rendering
+  function tick() {
+    updateGradientPosition();
+    rafId = requestAnimationFrame(tick);
+  }
+  
+  // Start animation loop
+  function startGradientAnimation() {
+    if (rafId === null) {
+      updateGradientPosition(); // initial update
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+  
+  // Stop animation loop when page is hidden (save resources)
+  function stopGradientAnimation() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
   }
   
   sizeBubblesLayer();
-  updateGradientPosition();
+  startGradientAnimation();
   
-  // Update gradient position on scroll (throttled for performance)
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        updateGradientPosition();
-        ticking = false;
-      });
-      ticking = true;
+  // Handle visibility changes
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopGradientAnimation();
+    } else {
+      startGradientAnimation();
     }
   }, { passive: true });
   // Prewarm natural spacing across entire document height
@@ -246,11 +269,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
   window.addEventListener('resize', () => {
     sizeBubblesLayer();
-    updateGradientPosition();
+    updateGradientPosition(); // force immediate update on resize
   });
   window.addEventListener('load', () => {
     sizeBubblesLayer();
-    updateGradientPosition();
+    updateGradientPosition(); // force immediate update on load
   });
   startSpawning();
 
