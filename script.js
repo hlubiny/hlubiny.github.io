@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     wrap.style.left = `${left}px`;
     if (isMobile) {
       wrap.style.position = 'fixed'; // viewport-relative on mobile
-      wrap.style.top = `${startTop}px`;
     } else {
       wrap.style.position = 'absolute'; // world-space on desktop
-      wrap.style.top = `${startTop}px`;
     }
+    wrap.style.top = '0px';
+    wrap.style.setProperty('--startY', `${Math.round(startTop)}px`);
     wrap.style.setProperty('--travelY', `${Math.round(travelY)}px`);
     wrap.style.setProperty('--bx', `${drift}px`);
     wrap.style.setProperty('--bs', `${size / 24}`);
