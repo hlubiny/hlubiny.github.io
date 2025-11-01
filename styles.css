@@ -128,7 +128,7 @@ section { scroll-margin-top: 120px; }
 .section-contact { min-height: 1600px; display: flex; align-items: center; }
 
 /* Bubbles layer */
-#bubbles-layer { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: hidden; z-index: 5; display: none; /* TEMPORARILY DISABLED */ }
+#bubbles-layer { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: hidden; z-index: 5; }
 main { position: relative; }
 /* Animated wrapper handles rise/wiggle transforms */
 .bubble-wrap {
