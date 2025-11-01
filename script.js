@@ -186,44 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     bubblesLayer.style.height = `${h}px`;
   }
   
-  // Update gradient background size to match document height exactly
-  function updateGradientSize() {
-    const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
-    // Match gradient height to document height exactly so colors align properly
-    const gradientHeight = Math.max(7000, docHeight);
-    document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
-    
-    // Update body::before pseudo-element via style injection
-    let styleEl = document.getElementById('gradient-bg-style');
-    if (!styleEl) {
-      styleEl = document.createElement('style');
-      styleEl.id = 'gradient-bg-style';
-      document.head.appendChild(styleEl);
-    }
-    styleEl.textContent = `body::before {
-      height: ${gradientHeight}px !important;
-      background-size: 100% ${gradientHeight}px !important;
-    }`;
-    
-    // Force multiple repaints to ensure gradient is fully rendered
-    void document.body.offsetHeight;
-    void document.body.getBoundingClientRect();
-  }
-  
+  // Gradient now uses fixed attachment - no need to update size
   sizeBubblesLayer();
-  updateGradientSize();
-  
-  // Force gradient to paint immediately - multiple passes for mobile
-  requestAnimationFrame(() => {
-    updateGradientSize();
-    requestAnimationFrame(() => {
-      updateGradientSize();
-      requestAnimationFrame(() => {
-        void document.body.offsetHeight;
-        void document.body.getBoundingClientRect();
-      });
-    });
-  });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
@@ -254,14 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   })();
-  window.addEventListener('resize', () => {
-    sizeBubblesLayer();
-    updateGradientSize();
-  });
-  window.addEventListener('load', () => {
-    sizeBubblesLayer();
-    updateGradientSize();
-  });
+  window.addEventListener('resize', sizeBubblesLayer);
+  window.addEventListener('load', sizeBubblesLayer);
   startSpawning();
 
   // Noise animation is now CSS-only (no JS needed)

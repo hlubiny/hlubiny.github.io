@@ -48,37 +48,23 @@ html {
   height: 100%;
 }
 
-
 body {
   font-family: "Archivo", Inter, system-ui, -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     sans-serif;
   font-weight: 300; /* default to Light */
-  background-color: transparent; /* let gradient show through */
+  background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
+  background-attachment: fixed;
+  background-size: 100% 7000px;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-color: var(--g1); /* dark blue fallback */
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
   height: auto;
   scroll-behavior: smooth;
   position: relative; /* anchor world-space overlays */
-}
-
-/* Gradient as pre-rendered layer to prevent scroll flashes */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--gradient-height, 7000px);
-  background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  z-index: -1;
-  pointer-events: none;
-  transform: translateZ(0); /* Force GPU layer for better rendering */
-  backface-visibility: hidden; /* Prevent flicker */
 }
 
 /* Optional utility to use PicNic where desired */
