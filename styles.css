@@ -79,6 +79,8 @@ body {
   z-index: 12;
   mix-blend-mode: luminosity;
   opacity: 0.3;
+  will-change: auto;
+  transform: translateZ(0);
 }
 /* Texture overlay stack */
 
