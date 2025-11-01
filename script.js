@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let spawnTimer = null;
   let gradientHeight = 7000;
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
+  const GRAIN_OVERSHOOT = 0.15; // extend grain/gradient to cover dynamic viewport changes
+
+  if (isMobile) {
+    config.spawnIntervalMs = Math.round(config.spawnIntervalMs * 2); // 50% fewer bubbles on mobile
+  }
 
   function random(min, max) { return Math.random() * (max - min) + min; }
 
@@ -193,7 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function syncGrainOverlay(viewportH, viewportW) {
     if (!grainOverlay) return;
     if (typeof viewportH === 'number') {
-      grainOverlay.style.height = `${Math.round(viewportH)}px`;
+      const overshootHeight = Math.round(viewportH * (1 + GRAIN_OVERSHOOT));
+      grainOverlay.style.height = `${overshootHeight}px`;
     }
     if (typeof viewportW === 'number') {
       grainOverlay.style.width = `${Math.round(viewportW)}px`;
@@ -210,7 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const visualH = visualViewport ? visualViewport.height : viewportH;
     const extra = Math.max(viewportH, visualH);
     // Add extra viewport span so gradient continues past the visual bottom and account for dynamic UI
-    gradientHeight = Math.max(rawHeight + extra * 2, extra * 2);
+    const overshootMultiplier = 2 + GRAIN_OVERSHOOT;
+    const extendedExtra = extra * overshootMultiplier;
+    gradientHeight = Math.max(rawHeight + extendedExtra, extendedExtra);
     document.documentElement.style.setProperty('--gradient-height', `${Math.round(gradientHeight)}px`);
     syncGrainOverlay(visualH || viewportH, viewportW);
   }
