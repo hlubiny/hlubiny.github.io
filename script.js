@@ -186,16 +186,29 @@ document.addEventListener('DOMContentLoaded', () => {
     bubblesLayer.style.height = `${h}px`;
   }
   
-  // Update gradient background size to match document height
+  // Update gradient background size to match document height with large buffer
   function updateGradientSize() {
     const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
-    const gradientHeight = Math.max(10000, docHeight + 500); // ensure coverage with margin
+    // Use a very large buffer to ensure gradient is fully preloaded - always at least 20000px
+    const gradientHeight = Math.max(20000, docHeight + 3000); // very large buffer to preload
     document.documentElement.style.backgroundSize = `100% ${gradientHeight}px`;
     document.body.style.backgroundSize = `100% ${gradientHeight}px`;
+    // Force a repaint to ensure gradient is rendered immediately
+    void document.documentElement.offsetHeight;
+    void document.body.offsetHeight;
   }
   
   sizeBubblesLayer();
   updateGradientSize();
+  
+  // Force gradient to render immediately on load
+  requestAnimationFrame(() => {
+    updateGradientSize();
+    // Force another render to ensure it's painted
+    requestAnimationFrame(() => {
+      void document.body.offsetHeight;
+    });
+  });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
@@ -234,14 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
     sizeBubblesLayer();
     updateGradientSize();
   });
-  // Update gradient on scroll to ensure coverage (throttled)
+  // Preemptively update gradient before scrolling gets too far
   let gradientUpdateTimer = null;
+  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
-    if (!gradientUpdateTimer) {
-      gradientUpdateTimer = setTimeout(() => {
-        updateGradientSize();
-        gradientUpdateTimer = null;
-      }, 100);
+    const currentScrollY = window.scrollY;
+    const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+    lastScrollY = currentScrollY;
+    
+    // Update more aggressively if scrolling fast or near edges
+    if (scrollDelta > 100 || currentScrollY < 500 || currentScrollY > (document.documentElement.scrollHeight - window.innerHeight - 500)) {
+      if (!gradientUpdateTimer) {
+        gradientUpdateTimer = setTimeout(() => {
+          updateGradientSize();
+          gradientUpdateTimer = null;
+        }, 50);
+      }
     }
   }, { passive: true });
   startSpawning();
@@ -330,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof fn === 'function') fn();
         return;
       }
-      
+
       // Despawn logic: mobile uses viewport top, desktop uses world-space top
       if (isMobile) {
         // Mobile: despawn when past top of viewport
