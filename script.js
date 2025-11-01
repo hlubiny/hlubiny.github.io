@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function startSpawning() {
     if (!bubblesLayer || prefersReduced) return;
     if (spawnTimer) return;
+    return; // TEMPORARILY DISABLED FOR PERFORMANCE TESTING
     spawnTimer = window.setInterval(() => spawnBubble(), config.spawnIntervalMs);
   }
 
