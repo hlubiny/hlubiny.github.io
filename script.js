@@ -186,29 +186,16 @@ document.addEventListener('DOMContentLoaded', () => {
     bubblesLayer.style.height = `${h}px`;
   }
   
-  // Update gradient background size to match document height with large buffer
+  // Update gradient background size to match document height exactly
   function updateGradientSize() {
     const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
-    // Use a very large buffer to ensure gradient is fully preloaded - always at least 20000px
-    const gradientHeight = Math.max(20000, docHeight + 3000); // very large buffer to preload
-    document.documentElement.style.backgroundSize = `100% ${gradientHeight}px`;
-    document.body.style.backgroundSize = `100% ${gradientHeight}px`;
-    // Force a repaint to ensure gradient is rendered immediately
-    void document.documentElement.offsetHeight;
-    void document.body.offsetHeight;
+    // Match gradient height to document height so colors align properly
+    const gradientHeight = Math.max(7000, docHeight);
+    document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
   }
   
   sizeBubblesLayer();
   updateGradientSize();
-  
-  // Force gradient to render immediately on load
-  requestAnimationFrame(() => {
-    updateGradientSize();
-    // Force another render to ensure it's painted
-    requestAnimationFrame(() => {
-      void document.body.offsetHeight;
-    });
-  });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
@@ -247,24 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sizeBubblesLayer();
     updateGradientSize();
   });
-  // Preemptively update gradient before scrolling gets too far
-  let gradientUpdateTimer = null;
-  let lastScrollY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-    lastScrollY = currentScrollY;
-    
-    // Update more aggressively if scrolling fast or near edges
-    if (scrollDelta > 100 || currentScrollY < 500 || currentScrollY > (document.documentElement.scrollHeight - window.innerHeight - 500)) {
-      if (!gradientUpdateTimer) {
-        gradientUpdateTimer = setTimeout(() => {
-          updateGradientSize();
-          gradientUpdateTimer = null;
-        }, 50);
-      }
-    }
-  }, { passive: true });
   startSpawning();
 
   // Noise animation is now CSS-only (no JS needed)

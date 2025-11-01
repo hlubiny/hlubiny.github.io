@@ -43,9 +43,7 @@
 html { 
   margin: 0; 
   padding: 0; 
-  background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
-  background-size: 100% 20000px;
-  background-repeat: no-repeat;
+  background: var(--g3); /* fallback color (light blue) to prevent white flashes */
   min-height: 100%;
   height: 100%;
 }
@@ -55,17 +53,30 @@ body {
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     sans-serif;
   font-weight: 300; /* default to Light */
-  background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
-  background-size: 100% 20000px;
-  background-repeat: no-repeat;
-  background-position: top left;
-  background-attachment: scroll;
+  background: var(--g3); /* fallback color */
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
   height: auto;
   scroll-behavior: smooth;
   position: relative; /* anchor world-space overlays */
+}
+
+/* Gradient as separate layer to prevent white flashes */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--gradient-height, 7000px);
+  background: linear-gradient(180deg, var(--g1) 0%, var(--g2) 50%, var(--g3) 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* Optional utility to use PicNic where desired */
