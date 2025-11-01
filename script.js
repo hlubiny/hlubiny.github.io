@@ -192,11 +192,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Match gradient height to document height exactly so colors align properly
     const gradientHeight = Math.max(7000, docHeight);
     document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
-    document.body.style.backgroundSize = `100% ${gradientHeight}px`;
+    
+    // Update body::before pseudo-element via style injection
+    let styleEl = document.getElementById('gradient-bg-style');
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'gradient-bg-style';
+      document.head.appendChild(styleEl);
+    }
+    styleEl.textContent = `body::before {
+      height: ${gradientHeight}px !important;
+      background-size: 100% ${gradientHeight}px !important;
+    }`;
+    
+    // Force multiple repaints to ensure gradient is fully rendered
+    void document.body.offsetHeight;
+    void document.body.getBoundingClientRect();
   }
   
   sizeBubblesLayer();
   updateGradientSize();
+  
+  // Force gradient to paint immediately - multiple passes for mobile
+  requestAnimationFrame(() => {
+    updateGradientSize();
+    requestAnimationFrame(() => {
+      updateGradientSize();
+      requestAnimationFrame(() => {
+        void document.body.offsetHeight;
+        void document.body.getBoundingClientRect();
+      });
+    });
+  });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
