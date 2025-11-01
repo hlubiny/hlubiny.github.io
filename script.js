@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let gradientHeight = 7000;
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
   const GRAIN_OVERSHOOT = 0.15; // extend grain/gradient to cover dynamic viewport changes
+  let baseContentHeight = 0;
+  let lastOvershootPx = 0;
 
   if (isMobile) {
     config.spawnIntervalMs = Math.round(config.spawnIntervalMs * 2); // 50% fewer bubbles on mobile
@@ -198,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function syncGrainOverlay(viewportH, viewportW) {
     if (!grainOverlay) return;
     if (typeof viewportH === 'number') {
-      const overshootHeight = Math.round(viewportH * (1 + GRAIN_OVERSHOOT));
+      const overshootHeight = Math.round(viewportH + viewportH * GRAIN_OVERSHOOT);
       grainOverlay.style.height = `${overshootHeight}px`;
     }
     if (typeof viewportW === 'number') {
@@ -206,7 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function updateGradientHeight(nextHeight) {
+  function updateGradientHeight(nextHeight, options = {}) {
+    const { forceBaseUpdate = false } = options;
     const rawHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
       ? nextHeight
       : getDocumentHeight();
@@ -214,22 +217,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewportH = window.innerHeight || document.documentElement.clientHeight || rawHeight;
     const viewportW = window.innerWidth || document.documentElement.clientWidth || (visualViewport ? visualViewport.width : 0);
     const visualH = visualViewport ? visualViewport.height : viewportH;
+    const candidateBase = rawHeight - lastOvershootPx;
+    const sanitizedBase = candidateBase > 0 ? candidateBase : rawHeight;
+    if (forceBaseUpdate || sanitizedBase > baseContentHeight) {
+      baseContentHeight = sanitizedBase;
+    }
     const extra = Math.max(viewportH, visualH);
-    // Add extra viewport span so gradient continues past the visual bottom and account for dynamic UI
-    const overshootMultiplier = 2 + GRAIN_OVERSHOOT;
-    const extendedExtra = extra * overshootMultiplier;
-    gradientHeight = Math.max(rawHeight + extendedExtra, extendedExtra);
+    const overshootPx = Math.round(extra * GRAIN_OVERSHOOT);
+    const extendedExtra = extra + overshootPx;
+    gradientHeight = Math.max(baseContentHeight + extendedExtra, extendedExtra);
+    lastOvershootPx = overshootPx;
     document.documentElement.style.setProperty('--gradient-height', `${Math.round(gradientHeight)}px`);
     syncGrainOverlay(visualH || viewportH, viewportW);
   }
 
   // Kick off
-  function sizeBubblesLayer() {
+  function sizeBubblesLayer(options = {}) {
     const docHeight = getDocumentHeight();
     if (bubblesLayer) {
       bubblesLayer.style.height = `${Math.round(docHeight)}px`;
     }
-    updateGradientHeight(docHeight);
+    updateGradientHeight(docHeight, options);
   }
   
   // GPU-accelerated gradient position update via transform
@@ -278,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  sizeBubblesLayer();
+  sizeBubblesLayer({ forceBaseUpdate: true });
   startGradientAnimation();
   
   // Handle visibility changes
@@ -324,11 +332,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateGradientPosition(true); // force immediate update on resize
   });
   window.addEventListener('orientationchange', () => {
-    sizeBubblesLayer();
+    sizeBubblesLayer({ forceBaseUpdate: true });
     updateGradientPosition(true);
   });
   window.addEventListener('load', () => {
-    sizeBubblesLayer();
+    sizeBubblesLayer({ forceBaseUpdate: true });
     updateGradientPosition(true); // force immediate update on load
   });
   if (window.visualViewport && typeof window.visualViewport.addEventListener === 'function') {
