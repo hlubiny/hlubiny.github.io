@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     spawnIntervalMs: 800,
     minSize: 20,
     maxSize: 25,
+    maxLifetimeMs: 30000, // 30 seconds max lifetime
   };
   const RISE_SPEED_PX_PER_S = 60; // constant vertical speed
   if (debugBubbles) document.body.classList.add('debug-bubbles');
@@ -104,8 +105,27 @@ document.addEventListener('DOMContentLoaded', () => {
       wrapCleanup.delete(wrap);
       bubbleCount = Math.max(0, bubbleCount - 1);
     }
+    
+    function fadeOutAndCleanup() {
+      if (!wrap.isConnected) return;
+      wrap.style.opacity = '0';
+      wrap.style.transition = 'opacity 2s ease-out';
+      // Clean up after fade completes
+      setTimeout(() => {
+        const fn = wrapCleanup.get(wrap);
+        if (typeof fn === 'function') fn();
+      }, 2000);
+    }
+    
     // register cleanup for off-screen removal
     wrapCleanup.set(wrap, cleanup);
+    // Max lifetime timeout - fade out then cleanup
+    setTimeout(() => {
+      if (wrap.isConnected && !wrap.classList.contains('fading-out')) {
+        wrap.classList.add('fading-out');
+        fadeOutAndCleanup();
+      }
+    }, config.maxLifetimeMs);
 
     wrap.appendChild(b);
     bubblesLayer.appendChild(wrap);
@@ -242,13 +262,24 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!st) return;
       const bx = st.base + st.amp * Math.sin(ts * st.freq + st.phase);
       wrap.style.setProperty('--bx', `${bx.toFixed(2)}px`);
-      // Despawn only when reaching absolute top of the document (world space)
+      
+      // Check if bubble is off-screen horizontally (view space)
+      const rect = wrap.getBoundingClientRect();
+      const sizePx = wrap._sizePx || 0;
+      const isOffScreenLeft = rect.right < -sizePx;
+      const isOffScreenRight = rect.left > window.innerWidth + sizePx;
+      if (isOffScreenLeft || isOffScreenRight) {
+        const fn = wrapCleanup.get(wrap);
+        if (typeof fn === 'function') fn();
+        return;
+      }
+      
+      // Despawn when reaching absolute top of the document (world space)
       const startTopPx = wrap._startTopPx;
       const travelYPx = wrap._travelYPx;
       const durationMs = wrap._durationMs;
       const delayMs = wrap._delayMs || 0;
       const startTs = wrap._startTs || 0;
-      const sizePx = wrap._sizePx || 0;
       if (startTopPx != null && travelYPx != null && durationMs != null && startTs) {
         const elapsed = ts - startTs - delayMs;
         if (elapsed >= 0) {

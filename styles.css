@@ -76,7 +76,7 @@ body {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 12;
+  z-index: 30; /* Above bubbles but mix-blend-mode prevents text readability issues */
   mix-blend-mode: luminosity;
   opacity: 0.3;
   will-change: auto;
@@ -88,18 +88,20 @@ body {
 
 .site-header {
   position: sticky;
-  top: 0;
+  top: 20px; /* This maintains spacing when sticky - adjust this value for desired margin */
   height: var(--header-h);
   backdrop-filter: none;
   background: transparent;
   border-bottom: none;
   z-index: 20;
+  margin-top: 20px; /* This applies when header is at top of page (not yet sticky) */
 }
 
 .header-inner { position: relative; display: flex; align-items: center; justify-content: flex-end; padding: 14px 0; }
 
 .brand { position: absolute; left: 50%; transform: translateX(-50%); }
-.brand-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.3px; font-family: "PicNic", "Archivo", system-ui, -apple-system, Segoe UI, Arial, sans-serif; font-size: 2rem; }
+.brand-link { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.3px; font-family: "PicNic", "Archivo", system-ui, -apple-system, Segoe UI, Arial, sans-serif; font-size: 2rem; display: inline-block; }
+.brand-logo { height: 40px; width: auto; display: block; }
 
 .nav { position: relative; }
 .nav-link { color: var(--muted); text-decoration: none; margin-left: 18px; }
@@ -128,7 +130,7 @@ section { scroll-margin-top: 120px; }
 .section-contact { min-height: 1600px; display: flex; align-items: center; }
 
 /* Bubbles layer */
-#bubbles-layer { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: hidden; z-index: 5; }
+#bubbles-layer { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; overflow: hidden; z-index: 25; }
 main { position: relative; }
 /* Animated wrapper handles rise/wiggle transforms */
 .bubble-wrap {
