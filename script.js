@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let spawnTimer = null;
   let gradientHeight = 7000;
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
-  const GRAIN_OVERSHOOT = 0; // no extra height so page length stays true to content
+  const GRAIN_OVERSHOOT = 0.15; // restore original overshoot to keep grain over viewport
   let baseContentHeight = 0;
 
   if (isMobile) {
@@ -192,20 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
     else { startSpawning(); }
   });
 
-  function measureBottom(selector) {
-    const el = document.querySelector(selector);
-    if (!el) return 0;
-    const rect = el.getBoundingClientRect();
-    const scrollTop = window.scrollY || window.pageYOffset;
-    return Math.round(rect.bottom + scrollTop);
-  }
-
   function getDocumentHeight() {
-    const footerBottom = measureBottom('.site-footer');
-    const logoBottom = measureBottom('.logo-bottom');
-    const mainBottom = measureBottom('main');
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-    return Math.max(footerBottom, logoBottom, mainBottom, viewportHeight);
+    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight || 0);
   }
 
   function syncGrainOverlay(viewportH, viewportW, overshootPx = 0) {
