@@ -76,6 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
       travelY = (opts && typeof opts.travelY === 'number')
         ? Math.max(600, Math.round(opts.travelY))
         : Math.max(600, Math.round(startTop + 200));
+
+      const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      const maxStart = Math.max(0, docHeight - Math.round(size));
+      startTop = Math.min(startTop, maxStart);
     }
 
     // size on inner bubble

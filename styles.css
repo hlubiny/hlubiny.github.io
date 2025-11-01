@@ -53,6 +53,7 @@ body {
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     sans-serif;
   font-weight: 300; /* default to Light */
+  margin: 0;
   background-color: transparent; /* let gradient show through, html has fallback */
   color: var(--text);
   line-height: 1.6;
