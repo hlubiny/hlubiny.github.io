@@ -186,8 +186,34 @@ document.addEventListener('DOMContentLoaded', () => {
     bubblesLayer.style.height = `${h}px`;
   }
   
-  // Gradient now uses fixed attachment - no need to update size
+  // Update gradient background position based on scroll
+  function updateGradientPosition() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    // Calculate how much of the gradient to reveal (based on max scroll)
+    const maxScroll = Math.max(
+      document.body.scrollHeight - window.innerHeight,
+      7000 - window.innerHeight
+    );
+    // Map scroll position to gradient position (inverse - scroll down = gradient moves up)
+    const gradientHeight = 7000;
+    const bgPosY = Math.min(scrollY, gradientHeight - window.innerHeight);
+    document.documentElement.style.setProperty('--bg-pos-y', `-${bgPosY}px`);
+  }
+  
   sizeBubblesLayer();
+  updateGradientPosition();
+  
+  // Update gradient position on scroll (throttled for performance)
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateGradientPosition();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
@@ -218,8 +244,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   })();
-  window.addEventListener('resize', sizeBubblesLayer);
-  window.addEventListener('load', sizeBubblesLayer);
+  window.addEventListener('resize', () => {
+    sizeBubblesLayer();
+    updateGradientPosition();
+  });
+  window.addEventListener('load', () => {
+    sizeBubblesLayer();
+    updateGradientPosition();
+  });
   startSpawning();
 
   // Noise animation is now CSS-only (no JS needed)
