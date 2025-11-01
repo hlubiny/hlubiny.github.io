@@ -185,7 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
     bubblesLayer.style.height = `${h}px`;
   }
+  
+  // Update gradient background size to match document height
+  function updateGradientSize() {
+    const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+    const gradientHeight = Math.max(10000, docHeight + 500); // ensure coverage with margin
+    document.documentElement.style.backgroundSize = `100% ${gradientHeight}px`;
+    document.body.style.backgroundSize = `100% ${gradientHeight}px`;
+  }
+  
   sizeBubblesLayer();
+  updateGradientSize();
   // Prewarm natural spacing across entire document height
   (function prewarm() {
     if (isMobile) {
@@ -216,8 +226,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   })();
-  window.addEventListener('resize', sizeBubblesLayer);
-  window.addEventListener('load', sizeBubblesLayer);
+  window.addEventListener('resize', () => {
+    sizeBubblesLayer();
+    updateGradientSize();
+  });
+  window.addEventListener('load', () => {
+    sizeBubblesLayer();
+    updateGradientSize();
+  });
+  // Update gradient on scroll to ensure coverage (throttled)
+  let gradientUpdateTimer = null;
+  window.addEventListener('scroll', () => {
+    if (!gradientUpdateTimer) {
+      gradientUpdateTimer = setTimeout(() => {
+        updateGradientSize();
+        gradientUpdateTimer = null;
+      }, 100);
+    }
+  }, { passive: true });
   startSpawning();
 
   // Noise animation is now CSS-only (no JS needed)
