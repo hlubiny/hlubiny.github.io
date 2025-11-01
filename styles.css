@@ -99,6 +99,13 @@ body::before {
   will-change: auto;
   transform: translateZ(0);
 }
+
+@media (max-width: 768px) {
+  .grain-overlay {
+    position: absolute;
+    width: 100%;
+  }
+}
 /* Texture overlay stack */
 
 .container { width: min(1100px, 92%); margin: 0 auto; }

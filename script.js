@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let spawnTimer = null;
   let gradientHeight = 7000;
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
-  const GRAIN_OVERSHOOT = 0.15; // extend grain/gradient to cover dynamic viewport changes
+  const GRAIN_OVERSHOOT = isMobile ? 0.05 : 0.15; // extend grain/gradient to cover dynamic viewport changes
   let baseContentHeight = 0;
 
   if (isMobile) {
