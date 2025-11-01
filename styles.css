@@ -191,7 +191,7 @@ main {
   margin-bottom: 0;
 }
 .logo-bottom-image {
-  max-width: 800px;
+  width: 30%;
   height: auto;
   display: block;
   transform: scale(1);

@@ -29,9 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth <= 768; // mobile optimization
   const bubblesLayer = document.getElementById('bubbles-layer');
+  const grainOverlay = document.querySelector('.grain-overlay');
   let bubbleCount = 0;
   let spawnTimer = null;
   let gradientHeight = 7000;
+  let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
 
   function random(min, max) { return Math.random() * (max - min) + min; }
 
@@ -188,14 +190,29 @@ document.addEventListener('DOMContentLoaded', () => {
     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
   }
 
+  function syncGrainOverlay(viewportH, viewportW) {
+    if (!grainOverlay) return;
+    if (typeof viewportH === 'number') {
+      grainOverlay.style.height = `${Math.round(viewportH)}px`;
+    }
+    if (typeof viewportW === 'number') {
+      grainOverlay.style.width = `${Math.round(viewportW)}px`;
+    }
+  }
+
   function updateGradientHeight(nextHeight) {
     const rawHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
       ? nextHeight
       : getDocumentHeight();
+    const visualViewport = window.visualViewport;
     const viewportH = window.innerHeight || document.documentElement.clientHeight || rawHeight;
-    // Add an extra viewport height so gradient continues past the visual bottom
-    gradientHeight = Math.max(rawHeight + viewportH, viewportH * 2);
+    const viewportW = window.innerWidth || document.documentElement.clientWidth || (visualViewport ? visualViewport.width : 0);
+    const visualH = visualViewport ? visualViewport.height : viewportH;
+    const extra = Math.max(viewportH, visualH);
+    // Add extra viewport span so gradient continues past the visual bottom and account for dynamic UI
+    gradientHeight = Math.max(rawHeight + extra * 2, extra * 2);
     document.documentElement.style.setProperty('--gradient-height', `${Math.round(gradientHeight)}px`);
+    syncGrainOverlay(visualH || viewportH, viewportW);
   }
 
   // Kick off
@@ -216,9 +233,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skip update if scroll hasn't changed (micro-optimization)
     if (!force && scrollY === lastScrollY) return;
     lastScrollY = scrollY;
+
+    const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+    if (viewportH && Math.abs(viewportH - lastViewportHeight) > 1) {
+      lastViewportHeight = viewportH;
+      updateGradientHeight();
+    }
     
     // Map scroll position to gradient translateY (inverse - scroll down = gradient moves up)
-    const maxTranslate = Math.max(0, gradientHeight - window.innerHeight);
+    const effectiveViewportH = viewportH || window.innerHeight || document.documentElement.clientHeight || 0;
+    const maxTranslate = Math.max(0, gradientHeight - effectiveViewportH);
     const translateY = -Math.min(scrollY, maxTranslate);
     
     document.documentElement.style.setProperty('--bg-translate-y', `${translateY}px`);
@@ -299,6 +323,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sizeBubblesLayer();
     updateGradientPosition(true); // force immediate update on load
   });
+  if (window.visualViewport && typeof window.visualViewport.addEventListener === 'function') {
+    window.visualViewport.addEventListener('resize', () => {
+      sizeBubblesLayer();
+      updateGradientPosition(true);
+    }, { passive: true });
+    window.visualViewport.addEventListener('scroll', () => {
+      updateGradientPosition(true);
+    }, { passive: true });
+  }
   startSpawning();
 
   // Noise animation is now CSS-only (no JS needed)
