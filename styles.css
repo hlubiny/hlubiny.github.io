@@ -78,7 +78,7 @@ body {
   pointer-events: none;
   z-index: 30; /* Above bubbles but mix-blend-mode prevents text readability issues */
   mix-blend-mode: luminosity;
-  opacity: 0.3;
+  opacity: 0.25;
   will-change: auto;
   transform: translateZ(0);
 }
