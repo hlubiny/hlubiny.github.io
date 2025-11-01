@@ -3,12 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Hlubiny</title>
     <meta name="description" content="Personal website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      // Force cache refresh - must run before other scripts
+      const v = '?v=' + Date.now();
+      const css = document.querySelector('link[href*="styles.css"]');
+      const js = document.querySelector('script[src*="script.js"]');
+      if (css) css.href = css.href.split('?')[0] + v;
+      // Update JS before it loads
+      document.write('<script src="script.js' + v + '"><\/script>');
+    </script>
   </head>
   <body>
     <!-- Procedural SVG grain (seed animation) -->
@@ -83,7 +95,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
   </body>
   </html>
 
