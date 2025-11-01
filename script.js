@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let spawnTimer = null;
   let gradientHeight = 7000;
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
-  const GRAIN_OVERSHOOT = isMobile ? 0.05 : 0.15; // extend grain/gradient to cover dynamic viewport changes
+  const GRAIN_OVERSHOOT = 0; // no extra height so page length stays true to content
   let baseContentHeight = 0;
 
   if (isMobile) {
@@ -192,18 +192,20 @@ document.addEventListener('DOMContentLoaded', () => {
     else { startSpawning(); }
   });
 
+  function measureBottom(selector) {
+    const el = document.querySelector(selector);
+    if (!el) return 0;
+    const rect = el.getBoundingClientRect();
+    const scrollTop = window.scrollY || window.pageYOffset;
+    return Math.round(rect.bottom + scrollTop);
+  }
+
   function getDocumentHeight() {
-    const footer = document.querySelector('.site-footer');
-    const footerBottom = footer ? (footer.offsetTop + footer.offsetHeight) : 0;
-    const bodyOffset = document.body ? document.body.offsetHeight : 0;
-    const docOffset = document.documentElement ? document.documentElement.offsetHeight : 0;
-    const viewportHeight = window.innerHeight || 0;
-    const structuralHeight = Math.max(footerBottom, bodyOffset, docOffset, viewportHeight);
-    const scrollCandidate = Math.max(document.body ? document.body.scrollHeight : 0, document.documentElement ? document.documentElement.scrollHeight : 0);
-    if (scrollCandidate > 0 && scrollCandidate < structuralHeight * 1.1) {
-      return Math.max(structuralHeight, scrollCandidate);
-    }
-    return structuralHeight;
+    const footerBottom = measureBottom('.site-footer');
+    const logoBottom = measureBottom('.logo-bottom');
+    const mainBottom = measureBottom('main');
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    return Math.max(footerBottom, logoBottom, mainBottom, viewportHeight);
   }
 
   function syncGrainOverlay(viewportH, viewportW, overshootPx = 0) {
