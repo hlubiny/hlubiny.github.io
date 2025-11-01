@@ -189,18 +189,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateGradientHeight(nextHeight) {
-    const targetHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
+    const rawHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
       ? nextHeight
       : getDocumentHeight();
-    gradientHeight = Math.max(targetHeight, window.innerHeight);
-    document.documentElement.style.setProperty('--gradient-height', `${gradientHeight}px`);
+    const viewportH = window.innerHeight || document.documentElement.clientHeight || rawHeight;
+    // Add an extra viewport height so gradient continues past the visual bottom
+    gradientHeight = Math.max(rawHeight + viewportH, viewportH * 2);
+    document.documentElement.style.setProperty('--gradient-height', `${Math.round(gradientHeight)}px`);
   }
 
   // Kick off
   function sizeBubblesLayer() {
     const docHeight = getDocumentHeight();
     if (bubblesLayer) {
-      bubblesLayer.style.height = `${docHeight}px`;
+      bubblesLayer.style.height = `${Math.round(docHeight)}px`;
     }
     updateGradientHeight(docHeight);
   }
