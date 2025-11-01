@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastViewportHeight = window.innerHeight || document.documentElement.clientHeight || gradientHeight;
   const GRAIN_OVERSHOOT = 0.15; // extend grain/gradient to cover dynamic viewport changes
   let baseContentHeight = 0;
-  let lastOvershootPx = 0;
 
   if (isMobile) {
     config.spawnIntervalMs = Math.round(config.spawnIntervalMs * 2); // 50% fewer bubbles on mobile
@@ -194,16 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function getDocumentHeight() {
-    return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    const footer = document.querySelector('.site-footer');
+    const footerBottom = footer ? (footer.offsetTop + footer.offsetHeight) : 0;
+    const bodyOffset = document.body ? document.body.offsetHeight : 0;
+    const docOffset = document.documentElement ? document.documentElement.offsetHeight : 0;
+    const viewportHeight = window.innerHeight || 0;
+    const structuralHeight = Math.max(footerBottom, bodyOffset, docOffset, viewportHeight);
+    const scrollCandidate = Math.max(document.body ? document.body.scrollHeight : 0, document.documentElement ? document.documentElement.scrollHeight : 0);
+    if (scrollCandidate > 0 && scrollCandidate < structuralHeight * 1.1) {
+      return Math.max(structuralHeight, scrollCandidate);
+    }
+    return structuralHeight;
   }
 
-  function syncGrainOverlay(viewportH, viewportW) {
+  function syncGrainOverlay(viewportH, viewportW, overshootPx = 0) {
     if (!grainOverlay) return;
     if (typeof viewportH === 'number') {
-      const overshootHeight = Math.round(viewportH + viewportH * GRAIN_OVERSHOOT);
+      const overshootHeight = Math.round(viewportH + overshootPx);
       grainOverlay.style.height = `${overshootHeight}px`;
     }
-    if (typeof viewportW === 'number') {
+    if (typeof viewportW === 'number' && viewportW > 0) {
       grainOverlay.style.width = `${Math.round(viewportW)}px`;
     }
   }
@@ -213,31 +222,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawHeight = (typeof nextHeight === 'number' && !Number.isNaN(nextHeight))
       ? nextHeight
       : getDocumentHeight();
+    if (forceBaseUpdate || baseContentHeight === 0) {
+      baseContentHeight = rawHeight;
+    } else {
+      baseContentHeight = Math.max(baseContentHeight, rawHeight);
+    }
     const visualViewport = window.visualViewport;
     const viewportH = window.innerHeight || document.documentElement.clientHeight || rawHeight;
     const viewportW = window.innerWidth || document.documentElement.clientWidth || (visualViewport ? visualViewport.width : 0);
     const visualH = visualViewport ? visualViewport.height : viewportH;
-    const candidateBase = rawHeight - lastOvershootPx;
-    const sanitizedBase = candidateBase > 0 ? candidateBase : rawHeight;
-    if (forceBaseUpdate || sanitizedBase > baseContentHeight) {
-      baseContentHeight = sanitizedBase;
-    }
     const extra = Math.max(viewportH, visualH);
     const overshootPx = Math.round(extra * GRAIN_OVERSHOOT);
-    const extendedExtra = extra + overshootPx;
-    gradientHeight = Math.max(baseContentHeight + extendedExtra, extendedExtra);
-    lastOvershootPx = overshootPx;
+    const gradientSpan = Math.max(baseContentHeight, rawHeight);
+    gradientHeight = Math.max(gradientSpan + overshootPx, extra + overshootPx);
     document.documentElement.style.setProperty('--gradient-height', `${Math.round(gradientHeight)}px`);
-    syncGrainOverlay(visualH || viewportH, viewportW);
+    syncGrainOverlay(visualH || viewportH, viewportW, overshootPx);
   }
 
   // Kick off
   function sizeBubblesLayer(options = {}) {
     const docHeight = getDocumentHeight();
-    if (bubblesLayer) {
-      bubblesLayer.style.height = `${Math.round(docHeight)}px`;
-    }
     updateGradientHeight(docHeight, options);
+    if (bubblesLayer) {
+      const overlayHeight = Math.max(baseContentHeight, window.innerHeight || 0);
+      bubblesLayer.style.height = `${Math.round(overlayHeight)}px`;
+    }
   }
   
   // GPU-accelerated gradient position update via transform
