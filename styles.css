@@ -380,6 +380,9 @@ section {
 .section--video-between {
   width: 100%;
   overflow: hidden;
+  min-height: 400px; /* Ensure section has height */
+  display: block;
+  position: relative;
 }
 
 .section--video-between .layout-boundary {
@@ -387,15 +390,18 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 400px;
 }
 
 .section-video-between__video {
   width: 100%;
   max-width: 1200px;
+  min-height: 300px;
   height: auto;
   border-radius: 16px;
   display: block;
   object-fit: contain;
+  background: rgba(13, 31, 45, 0.3); /* Temporary background to see video container */
 }
 
 .section-about__bg {
@@ -1251,6 +1257,9 @@ section {
     max-width: 100%;
     padding: 40px 0;
     overflow: hidden;
+    min-height: 300px; /* Ensure section has height on mobile */
+    display: block;
+    position: relative;
   }
 
   .section--video-between .layout-boundary {
@@ -1259,15 +1268,18 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 300px;
   }
 
   .section-video-between__video {
     width: 100%;
     max-width: 100%;
+    min-height: 250px;
     height: auto;
     border-radius: 12px;
     display: block;
     object-fit: contain;
+    background: rgba(13, 31, 45, 0.3); /* Temporary background to see video container */
   }
 
   /* Container - H mechaniky: 375px × 550px */
