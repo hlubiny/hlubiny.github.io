@@ -376,6 +376,28 @@ section {
   overflow: visible; /* Umožní light-trays přesahovat bez ořezu */
 }
 
+/* Video section between O projektu and Herní mechaniky */
+.section--video-between {
+  width: 100%;
+  overflow: hidden;
+}
+
+.section--video-between .layout-boundary {
+  padding: 80px 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-video-between__video {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  object-fit: contain;
+}
+
 .section-about__bg {
   position: absolute;
   inset: 0;
@@ -1221,6 +1243,31 @@ section {
     color: var(--color-text-primary);
     width: 100%;
     align-self: flex-start;
+  }
+
+  /* Video section between O projektu and Herní mechaniky - Mobile */
+  .section--video-between {
+    width: 100%;
+    max-width: 100%;
+    padding: 40px 0;
+    overflow: hidden;
+  }
+
+  .section--video-between .layout-boundary {
+    width: 100%;
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section-video-between__video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    object-fit: contain;
   }
 
   /* Container - H mechaniky: 375px × 550px */
