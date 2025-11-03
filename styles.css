@@ -471,8 +471,14 @@ section {
   justify-content: center;
 }
 
+.section--approach {
+  margin-top: -50px; /* Posunuto nahoru o 50px */
+}
+
 .section--approach .layout-boundary {
   padding: 199px 178px;
+  position: relative;
+  z-index: 1; /* Zajištění, že text je nad obrázkem */
 }
 
 .section--mars .layout-boundary {
@@ -774,6 +780,7 @@ section {
   width: 100%;
   height: auto;
   object-fit: contain;
+  object-position: center; /* Zarovnání obrázku na střed */
 }
 
 .section--mars .section__headline--center {
@@ -1627,15 +1634,20 @@ section {
     max-width: 100%;
     height: 653px;
     min-height: 653px;
+    margin-top: -50px !important; /* Posunuto nahoru o 50px */
+    position: relative;
+    z-index: 1; /* Zajištění, že text je nad obrázkem */
   }
 
   .section--approach .layout-boundary {
     width: 100%;
     height: 653px;
-    padding: 162px 24px 200px;
+    padding: 112px 24px 200px; /* Snížený padding nahoře o 50px */
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 2; /* Zajištění, že text je nad obrázkem */
   }
 
   /* Frame 18: height 494px, padding 15px 0px */
@@ -1687,12 +1699,16 @@ section {
     align-items: center;
     justify-content: center;
     min-height: 0;
+    position: relative;
+    z-index: 0; /* Obrázek pod textem */
   }
 
   .approach__media img {
-    height: 211.5px;
+    height: auto; /* Změněno z fixed height na auto - opraví cropping */
+    max-height: 211.5px; /* Maximální výška */
     width: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Změněno z cover na contain - zobrazí celý obrázek */
+    object-position: center; /* Zarovnání na střed */
   }
 
   /* Container - Mars: full width */
