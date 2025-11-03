@@ -1115,7 +1115,7 @@ section {
 
   /* Section Typography - Mobile */
   .section__label {
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 0.28em;
     font-weight: 500;
     text-align: left;
@@ -1123,31 +1123,31 @@ section {
   }
 
   .section__headline {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.088;
     font-weight: 600;
   }
 
   .section__headline--center {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.088;
   }
 
   .section__body {
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.4545;
     opacity: 1;
   }
 
   .section__body--highlight {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
     color: var(--color-text-primary);
   }
 
   .section__strap {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     font-weight: 600;
   }
@@ -1194,7 +1194,7 @@ section {
 
   .section--about .section__headline {
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     font-weight: 600;
     margin: 0;
@@ -1202,7 +1202,7 @@ section {
 
   .section--about .section__body {
     text-align: left;
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.4545;
     font-weight: 400;
     margin: 0;
@@ -1235,7 +1235,7 @@ section {
   }
 
   .section--mechanics .section__strap {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     font-weight: 600;
     text-align: center;
@@ -1282,7 +1282,7 @@ section {
 
   /* Frame 21 117:315 - padding: 0px 8px */
   .gallery__headline {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     font-weight: 600;
     padding: 0 8px;
@@ -1291,10 +1291,10 @@ section {
 
   /* Frame 20 117:317 - padding: 7px 64px 0px */
   .gallery__meta {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
-    padding: 7px 64px 0;
+    padding: 7px 16px 0;
     margin: 0;
   }
 
@@ -1397,7 +1397,7 @@ section {
   }
 
   .how__headline {
-    font-size: 8px;
+    font-size: 14px;
     line-height: 1.35;
     font-weight: 500;
     max-width: 100%;
@@ -1465,11 +1465,11 @@ section {
 
   /* Frame 26 117:386 - padding: 0px 72px, height: 48px, alignItems: center, justifyContent: center */
   .section--marine .section__body--highlight {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
-    padding: 0 72px;
-    height: 48px;
+    padding: 0 24px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1516,7 +1516,7 @@ section {
   }
 
   .approach__headline {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.2;
     font-weight: 600;
     max-width: 100%;
@@ -1574,11 +1574,11 @@ section {
 
   /* Frame 27 117:387 - padding: 0px 48px, height: 53px */
   .section--mars .section__body {
-    font-size: 8px;
+    font-size: 12px;
     line-height: 1.35;
     font-weight: 500;
-    padding: 0 48px;
-    height: 53px;
+    padding: 0 24px;
+    min-height: 53px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1588,28 +1588,27 @@ section {
 
   /* Container - Kontakty 117:348 - height: 419px, padding: 50px 24px 59px, gap: 19px */
   .section--contact {
-    min-height: 419px;
-    height: 419px;
+    min-height: auto;
+    padding-bottom: 0;
   }
 
   .section--contact .layout-boundary {
     width: 375px;
     max-width: 100%;
-    height: 419px;
-    padding: 50px 24px 59px;
+    min-height: auto;
+    padding: 80px 24px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
   }
 
   .contact__inner {
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 19px;
-    justify-content: flex-end;
+    gap: 30px;
+    justify-content: flex-start;
     align-items: center;
   }
 
@@ -1631,12 +1630,12 @@ section {
   }
 
   .contact__headline {
-    font-size: 20px;
+    font-size: 28px;
     line-height: 1.35;
     font-weight: 400;
     color: rgba(246, 246, 246, 0.76);
     max-width: 100%;
-    text-align: left;
+    text-align: center;
     margin: 0;
   }
 
@@ -1646,19 +1645,19 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 12px;
     padding: 0;
   }
 
   .contact__mail {
-    font-size: 6px;
+    font-size: 14px;
     line-height: 1.35;
     font-weight: 400;
-    text-align: right;
+    text-align: center;
   }
 
   .contact__social {
-    font-size: 6px;
+    font-size: 14px;
     line-height: 1.35;
     font-weight: 400;
     text-align: center;
@@ -1666,10 +1665,10 @@ section {
 
   /* Frame 31 117:391 - padding: 89px 0px 0px, width: 95px, height: 34px */
   .contact__mark {
-    margin: 89px 0 0;
-    max-width: 95px;
-    width: 95px;
-    height: 34px;
+    margin: 40px 0 0;
+    max-width: 200px;
+    width: 200px;
+    height: auto;
     object-fit: contain;
   }
 
@@ -1692,23 +1691,58 @@ section {
   }
 
   /* How it works images should not be cropped */
-  .how__shot { height: auto; }
-  .how__shot img { width: 100%; height: auto; object-fit: contain; }
+  .how__shot { 
+    height: auto;
+    min-height: 200px;
+  }
+  .how__shot img { 
+    width: 100%; 
+    height: auto; 
+    object-fit: contain;
+    display: block;
+  }
 
   /* Let bottom sections size naturally to fix gradient seams */
   .section--gallery,
   .section--how,
   .section--marine,
   .section--approach,
-  .section--contact { height: auto; }
+  .section--mars,
+  .section--contact { 
+    height: auto;
+    min-height: auto;
+  }
   .section--gallery .layout-boundary,
   .section--how .layout-boundary,
   .section--marine .layout-boundary,
   .section--approach .layout-boundary,
-  .section--contact .layout-boundary { height: auto; }
-
-  /* Enlarge contact logo on mobile */
-  .contact__mark { width: 180px; height: auto; max-width: 60vw; }
+  .section--mars .layout-boundary,
+  .section--contact .layout-boundary { 
+    height: auto;
+    min-height: auto;
+  }
+  
+  .gallery__inner {
+    height: auto;
+    min-height: auto;
+  }
+  
+  .how__inner {
+    height: auto;
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+  
+  .section--marine .section__centered {
+    height: auto;
+    min-height: auto;
+    padding: 40px 0;
+  }
+  
+  .approach__inner {
+    height: auto;
+    min-height: auto;
+  }
 }
 
 @media (max-width: 520px) {
