@@ -1024,32 +1024,33 @@ section {
   }
 
   /* Ensure full-width backgrounds and gradients */
-  /* On mobile: turn off scrolling background and pin a bottom gradient */
+  /* On mobile: turn off scrolling background */
   body::before {
     display: none !important;
   }
 
-  body::after {
+  /* Create fixed gradient overlay at bottom of viewport */
+  main::after {
     content: "";
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 70vh;
-    z-index: -2;
+    width: 100vw;
+    height: 60vh;
+    z-index: -1;
     pointer-events: none;
     background: linear-gradient(
-        180deg,
-        rgba(13, 31, 45, 0) 0%,
-        rgba(13, 31, 45, 1) 26%,
-        rgba(26, 47, 63, 0.9) 63%,
-        rgba(18, 43, 60, 0.85) 82%,
-        rgba(10, 24, 35, 0.95) 100%
-      ),
-      radial-gradient(120% 120% at 50% 0%, rgba(105, 139, 122, 0.18) 0%, rgba(13, 31, 45, 0) 60%);
+        0deg,
+        rgba(10, 24, 35, 0.95) 0%,
+        rgba(18, 43, 60, 0.85) 18%,
+        rgba(26, 47, 63, 0.9) 37%,
+        rgba(13, 31, 45, 1) 74%,
+        rgba(13, 31, 45, 0.95) 88%,
+        rgba(13, 31, 45, 0) 100%
+      );
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-position: bottom;
   }
 
   .hero__background {
