@@ -392,7 +392,7 @@ section {
 /* Light-trays osvobozený od containeru - překrývá video zespoda */
 .section-about__light {
   position: absolute;
-  top: -100px; /* Překrývá video o cca 100px */
+  top: -130px; /* Překrývá video více - posunuto o ~15% výšky obrázku nahoru */
   left: 50%;
   width: 140%;
   max-width: none;
@@ -1790,8 +1790,8 @@ section {
   }
   
   .section-about__light {
-    top: -100px; /* Překrývá video o cca 100px */
-    width: 220%;
+    top: -130px !important; /* Překrývá video více - posunuto o ~15% výšky obrázku nahoru */
+    width: 220% !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 0 !important; /* Nad videem, pod textem */
