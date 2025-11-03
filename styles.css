@@ -1022,6 +1022,26 @@ section {
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Ensure full-width backgrounds and gradients */
+  body::before {
+    width: 100vw;
+    left: 0;
+    right: 0;
+  }
+
+  .hero__background {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  .section-about__bg {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+
   /* Mobile Navigation */
   .mobile-menu-toggle {
     display: block;
@@ -1713,9 +1733,18 @@ section {
   }
 
   /* Desktop specific adjustments for mobile */
+  /* Ensure background elements are full width */
+  .section-about__bg {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  
   .section-about__light {
     top: -120px;
     width: 220%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .section-about__halo {
