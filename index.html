@@ -54,7 +54,22 @@
           <a class="nav-link" href="#tym">Tým</a>
           <a class="nav-link nav-link--accent" href="#kontakt">Kontakt</a>
         </nav>
+        <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="2.38" y1="4.75" x2="16.63" y2="4.75" stroke="currentColor" stroke-width="1"/>
+            <line x1="2.38" y1="7.92" x2="16.63" y2="7.92" stroke="currentColor" stroke-width="1"/>
+            <line x1="2.38" y1="11.08" x2="16.63" y2="11.08" stroke="currentColor" stroke-width="1"/>
+            <line x1="2.38" y1="14.25" x2="16.63" y2="14.25" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </button>
       </div>
+      <nav class="mobile-nav" aria-label="Mobilní navigace">
+        <a class="mobile-nav-link" href="#o-projektu">O projektu</a>
+        <a class="mobile-nav-link" href="#jak-to-funguje">Jak to funguje</a>
+        <a class="mobile-nav-link" href="#inspirace">Inspirace</a>
+        <a class="mobile-nav-link" href="#tym">Tým</a>
+        <a class="mobile-nav-link" href="#kontakt">Kontakt</a>
+      </nav>
     </header>
 
     <main id="hero">
@@ -75,8 +90,8 @@
           <div class="hero__scroll">
             <span class="hero__scroll-label">pONOŘ SE do HLUBIn</span>
             <span class="hero__scroll-icon" aria-hidden="true">
-              <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 2v22M2 16l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 0L8 4H0L4 0Z" fill="currentColor" />
               </svg>
             </span>
           </div>
@@ -114,14 +129,16 @@
             <figure class="gallery__tile gallery__tile--a" role="listitem">
               <img src="graphics/fotos/optimized/foto1.jpg" alt="Hráči s ovladači" />
             </figure>
-            <figure class="gallery__tile gallery__tile--b" role="listitem">
-              <img src="graphics/fotos/optimized/foto2.jpg" alt="Herní prostředí" />
-            </figure>
+            <div class="gallery__tile--wrapper">
+              <figure class="gallery__tile gallery__tile--b" role="listitem">
+                <img src="graphics/fotos/optimized/foto2.jpg" alt="Herní prostředí" />
+              </figure>
+              <figure class="gallery__tile gallery__tile--d" role="listitem">
+                <img src="graphics/fotos/optimized/foto4.jpg" alt="Pohled do kopule" />
+              </figure>
+            </div>
             <figure class="gallery__tile gallery__tile--c" role="listitem">
               <img src="graphics/fotos/optimized/foto3.JPG" alt="Projekt na plátně" />
-            </figure>
-            <figure class="gallery__tile gallery__tile--d" role="listitem">
-              <img src="graphics/fotos/optimized/foto4.jpg" alt="Pohled do kopule" />
             </figure>
             <figure class="gallery__tile gallery__tile--e" role="listitem">
               <img src="graphics/fotos/optimized/foto5.jpg" alt="Instalace Hlubiny" />
@@ -168,7 +185,7 @@
 
       <section class="section section--mars" aria-labelledby="mars-title">
         <div class="layout-boundary section__centered">
-          <h2 id="mars-title" class="section__headline section__headline--center">Máme detailnější mapy Marsu než oceánského dna.</h2>
+          <h2 id="mars-title" class="section__headline section__headline--center">Lidstvo má detailnější mapy Marsu než oceánského dna.</h2>
           <p class="section__body">Mimozemské formy života už možná existují v hlubinách — ale ničíme je rychleji, než stíháme prozkoumat.</p>
         </div>
       </section>
