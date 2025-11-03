@@ -1280,22 +1280,27 @@ section {
   }
 
   /* Frame 16: width 327px, height 128px, padding 0px 24px, gap 7px */
+  /* FORCE remove box-shadow */
+  div.gallery__card,
   .gallery__card {
-    position: absolute;
-    top: 91px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 327px;
-    max-width: calc(100% - 48px);
-    height: 128px;
-    padding: 0 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+    position: absolute !important;
+    top: 91px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 327px !important;
+    max-width: calc(100% - 48px) !important;
+    height: 128px !important;
+    padding: 0 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+    align-items: center !important;
+    text-align: center !important;
+    justify-content: center !important;
     box-shadow: none !important;
+    filter: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
   }
 
   /* Frame 21: padding 0px 8px */
