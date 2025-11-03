@@ -486,7 +486,7 @@ section {
   position: relative;
   width: min(100%, var(--layout-width));
   margin: 0 auto;
-  min-height: 2301px;
+  min-height: 1305px;
 }
 
 .gallery__card {
@@ -494,12 +494,11 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 440px;
+  width: 820px;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   align-items: center;
   text-align: center;
   z-index: 2;
@@ -520,7 +519,7 @@ section {
   opacity: 0.82;
   font-size: 0.95rem;
   line-height: 1.5;
-  max-width: 340px;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -529,58 +528,60 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 2496px;
-  height: 2301px;
+  width: 1280px;
+  height: 1305px;
   z-index: 1;
 }
 
 .gallery__tile {
   position: absolute;
   display: block;
+  border-radius: 24px;
+  filter: drop-shadow(0 0 30px rgba(198, 225, 186, .6)) drop-shadow(0 0 60px rgba(198, 225, 186, 0.6)) drop-shadow(0 0 90px rgba(198, 225, 186, 0.4));
 }
 
 .gallery__tile img,
 .gallery__tile video {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  border-radius: 24px;
 }
 
 .gallery__tile--a {
-  width: 538px;
-  height: 702px;
-  left: 104px;
-  top: 745px;
+  width: 212px;
+  height: 282px;
+  left: -80px;
+  top: 441px;
 }
 
 .gallery__tile--b {
-  width: 917px;
-  height: 441px;
-  left: 701px;
-  top: 187px;
+  width: 354px;
+  height: 199px;
+  left: 288px;
+  top: 170px;
 }
 
 .gallery__tile--c {
-  width: 928px;
-  height: 554px;
-  left: 560px;
-  top: 1661px;
+  width: 353px;
+  height: 199px;
+  left: 263px;
+  top: 897px;
 }
 
 .gallery__tile--d {
-  width: 558px;
-  height: 647px;
-  left: 1664px;
-  top: 211px;
+  width: 220px;
+  height: 292px;
+  left: 1036px;
+  top: 170px;
 }
 
 .gallery__tile--e {
-  width: 831px;
-  height: 534px;
-  left: 1563px;
-  top: 1408px;
+  width: 338px;
+  height: 231px;
+  left: 942px;
+  top: 766px;
 }
 
 .gallery__video {
@@ -700,6 +701,7 @@ section {
   display: flex;
   flex-direction: column;
   padding-left: 0;
+  align-items: flex-start;
 }
 
 .contact__headline {
@@ -709,6 +711,7 @@ section {
   color: rgba(246, 246, 246, 0.86);
   margin: 0;
   max-width: 633px;
+  align-self: flex-start;
 }
 
 .contact__mark {
@@ -724,8 +727,9 @@ section {
   flex-direction: column;
   align-items: flex-end;
   gap: 18px;
-  padding-top: 40px;
+  padding-top: 0;
   padding-right: 0;
+  align-self: flex-start;
 }
 
 .contact__link {
