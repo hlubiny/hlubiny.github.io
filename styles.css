@@ -1626,7 +1626,7 @@ section {
     gap: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .contact__headline {
@@ -1666,8 +1666,8 @@ section {
   /* Frame 31 117:391 - padding: 89px 0px 0px, width: 95px, height: 34px */
   .contact__mark {
     margin: 40px 0 0;
-    max-width: 200px;
-    width: 200px;
+    max-width: 250px;
+    width: 250px;
     height: auto;
     object-fit: contain;
   }
