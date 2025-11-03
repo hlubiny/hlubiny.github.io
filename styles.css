@@ -1030,16 +1030,17 @@ section {
   }
 
   body::before {
-    width: 100vw;
-    left: 0;
-    right: 0;
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    height: 100vh;
-    background-size: 100% 100%;
-    background-position: bottom;
-    transform: none;
+    width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    position: fixed !important;
+    height: 100vh !important;
+    inset: unset !important;
+    background-size: 100% 100% !important;
+    background-position: bottom !important;
+    transform: none !important;
   }
 
   .hero__background {
@@ -1692,24 +1693,26 @@ section {
   }
 
   .contact__copy {
-    width: 100%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    width: 100% !important;
+    gap: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0 !important;
   }
 
   .contact__headline {
-    font-size: 20px;
-    line-height: 1.35;
-    font-weight: 400;
-    color: rgba(246, 246, 246, 0.76);
-    text-align: center;
-    margin: 0;
-    width: 100%;
-    align-self: center;
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+    font-weight: 400 !important;
+    color: rgba(246, 246, 246, 0.76) !important;
+    text-align: center !important;
+    margin: 0 !important;
+    width: 100% !important;
+    align-self: center !important;
+    max-width: none !important;
   }
 
   /* Frame 29: gap 6px */
