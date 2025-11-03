@@ -41,64 +41,149 @@
       <rect width="100%" height="100%" filter="url(#grainy)" fill="white"/>
     </svg>
     <header class="site-header" role="banner">
-      <div class="container header-inner">
-        <div class="brand" aria-label="Top logo">
-          <a href="#top" class="brand-link">
-            <img src="graphics/Hlubiny-logo_1 1.svg" alt="Hlubiny" class="brand-logo" />
-          </a>
-        </div>
-        <nav class="nav" aria-label="Primary">
-          <a class="nav-link" href="#about">O projektu</a>
-          <a class="nav-link" href="#how-it-works">Jak to funguje</a>
-          <a class="nav-link" href="#approach">Přístup</a>
-          <a class="nav-link btn" href="#contact">Kontakt</a>
+      <div class="layout-boundary header-inner">
+        <nav class="nav-group nav-group--left" aria-label="Hlavní navigace">
+          <a class="nav-link" href="#o-projektu">O projektu</a>
+          <a class="nav-link" href="#jak-to-funguje">Jak to funguje</a>
+        </nav>
+        <a href="#hero" class="brand" aria-label="Hlubiny domů">
+          <img src="graphics/Hlubiny-logo_1 1.svg" alt="Hlubiny" class="brand-logo" />
+        </a>
+        <nav class="nav-group nav-group--right" aria-label="Doplňková navigace">
+          <a class="nav-link" href="#inspirace">Inspirace</a>
+          <a class="nav-link" href="#tym">Tým</a>
+          <a class="nav-link nav-link--accent" href="#kontakt">Kontakt</a>
         </nav>
       </div>
     </header>
 
-    <main id="top">
+    <main id="hero">
       <div id="bubbles-layer" aria-hidden="true"></div>
 
-      <section id="about" class="section section-about" aria-labelledby="about-title">
-        <div class="container">
-          <h2 id="about-title">O projektu</h2>
-          <p>Hlubiny jsou interaktivní multiplayerový zážitek, který propojuje digitální hru s přírodními principy. Hráči se ujímají rolí hlubokomořských tvorů a soupeří o přežití, růst a dominanci ve sdíleném prostředí. Herní mechaniky vycházejí z reálných biologických vlastností jednotlivých druhů a umožňují během hry postupovat skrz různé organismy. Projekt usiluje o vzdělávací a vizuální zážitek ve velkoplošné projekci.
-            Původně navrženo pro 360° kopuli pražského planetária. Představeno na klauzurách UMPRUM a festivalu FinalFinal..</p>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__background" aria-hidden="true">
+          <video class="hero__video" src="graphics/Nazev_Hlubiny2_optimized.webm" autoplay muted loop playsinline poster="graphics/figma/hero-light-trays.png"></video>
+          <img src="graphics/figma/hero-light-trays.png" alt="Světelné pruhy" class="hero__light" />
+          <img src="graphics/figma/ellipse-2.png" alt="" class="hero__halo hero__halo--left" />
+          <img src="graphics/figma/ellipse-3.png" alt="" class="hero__halo hero__halo--right" />
+        </div>
+        <div class="layout-boundary hero__inner">
+          <div class="hero__copy">
+            <h1 id="hero-title" class="hero__headline">Interaktivní hra z prostředí hlubokomořského ekosystému</h1>
+          </div>
+          <div class="hero__scroll">
+            <span class="hero__scroll-label">pONOŘ SE do HLUBIn</span>
+            <span class="hero__scroll-icon" aria-hidden="true">
+              <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2v22M2 16l8 8 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
         </div>
       </section>
 
-      <section id="how-it-works" class="section section-how" aria-labelledby="how-title">
-        <div class="container">
-          <h2 id="how-title">Jak to funguje</h2>
-          <p>Hráči naskenují QR kód nebo navštíví hlubiny.online, vyberou si startovního organismu a pak pomocí telefonu ovládají svého tvora na velkoplošné projekci jako virtuálním joystickem. Živíte se mořským sněhem, rostete a postupujete skrz různé druhy ve sdíleném prostředí s ostatními hráči.</p>
+      <section id="o-projektu" class="section section--about" aria-labelledby="about-title">
+        <div class="layout-boundary section__grid">
+          <div class="section__label">O PROJEKTU</div>
+          <div class="section__content">
+            <h2 id="about-title" class="section__headline">Hlubiny jsou interaktivní multiplayerový zážitek, který propojuje digitální hru s přírodními principy.</h2>
+            <p class="section__body">Hráči se ujímají rolí hlubokomořských tvorů a soupeří o přežití, růst a dominanci ve sdíleném prostředí. Herní mechaniky vycházejí z reálných biologických vlastností jednotlivých druhů a umožňují během hry postupovat skrz různé organismy.</p>
+          </div>
         </div>
       </section>
 
-      <section id="approach" class="section section-approach" aria-labelledby="approach-title">
-        <div class="container">
-          <h2 id="approach-title">Přístup</h2>
-          <p>Inspirováno hrami jako Spore a Agar.io, projekt využívá známou arkádovou mechaniku jako rámec pro průzkum hlubokomořských organismů. Hráči soupeří o zdroje a velikost, organismy jsou modelovány podle skutečných druhů, jejich schopnosti vycházejí z dokumentovaných biologických adaptací a živí se mořským sněhem sestupujícím z povrchu.
-          </p><p>Volba prostředí je záměrná: máme mapy Marsu ve vyšším rozlišení než dna našich vlastních oceánů. Hlubokomořský život se vyvinul v podmínkách stejně cizích jako jakákoliv exoplaneta. To, co nazýváme mimozemským, už může existovat v těchto hlubinách, ale tyto ekosystémy mizí rychleji, než je stačíme prozkoumat.
-            Podivné a neznámé nemusí být daleko. Stačí se podívat pod hladinu.</p>
+      <section class="section section--mechanics" aria-label="Herní mechaniky">
+        <div class="layout-boundary section__centered">
+          <p class="section__strap">Herní mechaniky vycházejí z reálných biologických vlastností jednotlivých druhů a umožňují během hry postupovat skrz různé organismy.</p>
         </div>
       </section>
 
-      <section id="contact" class="section section-contact" aria-labelledby="contact-title">
-        <div class="container">
-          <h2 id="contact-title">Contact</h2>
-          <p>Email placeholder: hi@hlubiny.example</p>
+      <section id="tym" class="section section--gallery" aria-labelledby="gallery-title">
+        <div class="layout-boundary gallery__inner">
+          <div class="gallery__card">
+            <h2 id="gallery-title" class="gallery__headline">Projekt usiluje o vzdělávací a vizuální zážitek ve velkoplošné projekci.</h2>
+            <p class="gallery__meta">Původně navrženo pro 360° kopuli pražského planetária. Představeno na klauzurách UMPRUM a festivalu FinalFinal.</p>
+          </div>
+          <div class="gallery__mosaic" role="list">
+            <figure class="gallery__tile gallery__tile--a" role="listitem">
+              <img src="graphics/figma/gallery-4.png" alt="Hráči s ovladači" />
+            </figure>
+            <figure class="gallery__tile gallery__tile--b" role="listitem">
+              <img src="graphics/figma/gallery-2.png" alt="Herní prostředí" />
+            </figure>
+            <figure class="gallery__tile gallery__tile--c" role="listitem">
+              <video class="gallery__video" src="graphics/Nazev_Hlubiny2_optimized.webm" autoplay muted loop playsinline poster="graphics/figma/gallery-3.png"></video>
+            </figure>
+            <figure class="gallery__tile gallery__tile--d" role="listitem">
+              <img src="graphics/figma/gallery-5.png" alt="Pohled do kopule" />
+            </figure>
+            <figure class="gallery__tile gallery__tile--e" role="listitem">
+              <img src="graphics/figma/gallery-1.png" alt="Instalace Hlubiny" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="jak-to-funguje" class="section section--how" aria-labelledby="how-title">
+        <div class="layout-boundary how__inner">
+          <div class="how__copy">
+            <div class="section__label">JAK TO FUNGUJE</div>
+            <h2 id="how-title" class="how__headline">Hráči naskenují QR kód nebo navštíví hlubiny.online, zvolí si startovní organismus a pak použijí telefon jako virtuální joystick k ovládání svého tvora na velkoplošné projekci.</h2>
+          </div>
+          <div class="how__media">
+            <figure class="how__shot">
+              <img src="graphics/figma/mechanic-1.png" alt="Ovládání přes telefon" />
+            </figure>
+            <figure class="how__shot">
+              <img src="graphics/figma/mechanic-2.png" alt="Detail mořského ekosystému" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--marine" aria-labelledby="marine-title">
+        <div class="layout-boundary section__centered">
+          <h2 id="marine-title" class="section__headline section__headline--center">Počas hry se živíte mořským sněhem.</h2>
+          <p class="section__body section__body--highlight">Když zemřete, rozpadnete se na mořský sníh a stanete se součástí oběhu.</p>
+        </div>
+      </section>
+
+      <section id="inspirace" class="section section--approach" aria-labelledby="approach-title">
+        <div class="layout-boundary approach__inner">
+          <div class="approach__copy">
+            <div class="section__label">INSPIRACE</div>
+            <h2 id="approach-title" class="approach__headline">Inspirováno hrami jako Spore a Agar.io, projekt využívá známou arkádovou mechaniku jako rámec pro průzkum hlubokomořských organismů.</h2>
+          </div>
+          <div class="approach__media" aria-hidden="true">
+            <img src="graphics/figma/approach-illustration.png" alt="Ilustrace hlubokomořských organismů" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--mars" aria-labelledby="mars-title">
+        <div class="layout-boundary section__centered">
+          <h2 id="mars-title" class="section__headline section__headline--center">Máme detailnější mapy Marsu než oceánského dna.</h2>
+          <p class="section__body">Mimozemské formy života už možná existují v hlubinách — ale ničíme je rychleji, než stíháme prozkoumat.</p>
+        </div>
+      </section>
+
+      <section id="kontakt" class="section section--contact" aria-labelledby="contact-title">
+        <div class="layout-boundary contact__inner">
+          <div class="contact__copy">
+            <h2 id="contact-title" class="contact__headline">Kontaktujte nás</h2>
+            <img src="graphics/Nazev_Hlubiny2.png" alt="Hlubiny slovo-marka" class="contact__mark" />
+          </div>
+          <div class="contact__details">
+            <a class="contact__mail" href="mailto:hlubinygame@email.cz">hlubinygame@email.cz</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <div class="logo-bottom">
-      <img src="graphics/Nazev_Hlubiny2.png" alt="Hlubiny" class="logo-bottom-image" />
-    </div>
-
     <footer class="site-footer" role="contentinfo">
-      <div class="container">
-        <div class="brand brand-footer" aria-label="Bottom logo">HLUBINY</div>
-        <p>© <span id="year"></span> Hlubiny</p>
+      <div class="layout-boundary footer__inner">
+        <span class="footer__brand">HLUBINY</span>
+        <span class="footer__meta">© <span id="year"></span> Hlubiny</span>
       </div>
     </footer>
 

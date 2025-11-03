@@ -64,43 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const b = document.createElement('div');
     b.className = 'bubble';
 
+    const viewportH = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 0);
+    const viewportW = Math.max(1, window.innerWidth || document.documentElement.clientWidth || 0);
     const size = random(config.minSize, config.maxSize);
-    const left = random(0, window.innerWidth - size);
+    const maxLeft = Math.max(0, viewportW - size);
+    const left = random(0, maxLeft);
     // Duration derived from travel distance to ensure constant speed
     const delay = (opts && typeof opts.delayOffsetMs === 'number') ? random(0, 600) : 0;
     const drift = random(-20, 20);
-    
-    // Mobile: viewport-relative (fixed positioning), Desktop: world-space (absolute)
-    let startTop, travelY;
-    if (isMobile) {
-      // Mobile: spawn at bottom of viewport, travel to top
-      startTop = window.innerHeight + random(10, 50);
-      travelY = window.innerHeight + 100; // travel from bottom to above top
-    } else {
-      // Desktop: world-space starting position: just below current viewport
-      startTop = (opts && typeof opts.preTop === 'number')
-        ? opts.preTop
-        : (window.scrollY + window.innerHeight + random(10, 80));
-      // Ensure travel reaches past the top of the page regardless of document height
-      travelY = (opts && typeof opts.travelY === 'number')
-        ? Math.max(600, Math.round(opts.travelY))
-        : Math.max(600, Math.round(startTop + 200));
-
-      const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-      const maxStart = Math.max(0, docHeight - Math.round(size));
-      startTop = Math.min(startTop, maxStart);
-    }
+    const spawnBase = viewportH > 0 ? viewportH : 600;
+    const startTop = spawnBase + random(20, 140);
+    const travelY = Math.max(600, Math.round(spawnBase + size + 200));
 
     // size on inner bubble
     b.style.width = `${size}px`;
     b.style.height = `${size}px`;
     // position and animation on wrapper
-    wrap.style.left = `${left}px`;
-    if (isMobile) {
-      wrap.style.position = 'fixed'; // viewport-relative on mobile
-    } else {
-      wrap.style.position = 'absolute'; // world-space on desktop
-    }
+    wrap.style.left = `${Math.round(left)}px`;
+    wrap.style.position = 'fixed'; // viewport-relative for all viewports
     wrap.style.top = '0px';
     wrap.style.setProperty('--startY', `${Math.round(startTop)}px`);
     wrap.style.setProperty('--travelY', `${Math.round(travelY)}px`);
@@ -115,12 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const animDelayMs = Number((delay + extraDelay - progress * duration).toFixed(0));
     wrap.style.animationDelay = `${animDelayMs}ms`;
 
-    // Track world-space animation state for correct off-screen cleanup
-    wrap._startTopPx = startTop;
-    wrap._travelYPx = travelY;
-    wrap._durationMs = duration;
-    wrap._delayMs = animDelayMs;
-    wrap._startTs = performance.now();
     wrap._sizePx = size;
 
     function cleanup() {
@@ -234,8 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const docHeight = getDocumentHeight();
     updateGradientHeight(docHeight, options);
     if (bubblesLayer) {
-      const overlayHeight = Math.max(baseContentHeight, window.innerHeight || 0);
-      bubblesLayer.style.height = `${Math.round(overlayHeight)}px`;
+      const viewportH = window.innerHeight || document.documentElement.clientHeight || 0;
+      if (viewportH) {
+        bubblesLayer.style.height = `${Math.round(viewportH)}px`;
+      } else {
+        bubblesLayer.style.height = '100vh';
+      }
     }
   }
   
@@ -298,32 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
   // Prewarm natural spacing across entire document height
   (function prewarm() {
-    if (isMobile) {
-      // Mobile: reduced prewarm, viewport-relative only
-      const count = 8; // reduced from 60-80
-      const viewportH = window.innerHeight;
-      const spacing = viewportH / count;
-      for (let i = 0; i < count; i++) {
-        const currentY = (i + 0.5) * spacing;
-        const travelY = viewportH + 100;
-        const progress = Math.min(0.9, Math.max(0.1, Math.random() * 0.8));
-        const preTop = currentY + progress * travelY;
-        const delayOffsetMs = Math.round(random(0, 600));
-        spawnBubble({ preTop, progress, delayOffsetMs, travelY });
-      }
-    } else {
-      // Desktop: original prewarm logic
-      const docH = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-      const count = Math.min(80, Math.max(60, Math.ceil(docH / 300))); // ~1 per 300px
-      const spacing = docH / count;
-      for (let i = 0; i < count; i++) {
-        const currentY = Math.max(0, (i + 0.5) * spacing); // target visual position now
-        const travelY = currentY + 800; // ensure it will travel past the top
-        const progress = Math.min(0.9, Math.max(0.1, Math.random() * 0.8)); // 10%..90%
-        const preTop = currentY + progress * travelY; // so that at this progress, it's at currentY
-        const delayOffsetMs = Math.round(random(0, 600));
-        spawnBubble({ preTop, progress, delayOffsetMs, travelY });
-      }
+    if (prefersReduced) return;
+    const viewportH = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 0);
+    const count = Math.max(8, Math.round(viewportH / 120));
+    for (let i = 0; i < count; i++) {
+      const progress = Math.min(0.9, Math.max(0.1, Math.random() * 0.8));
+      const delayOffsetMs = Math.round(random(0, 600));
+      spawnBubble({ progress, delayOffsetMs });
     }
   })();
   window.addEventListener('resize', () => {
@@ -426,39 +386,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // Check if bubble is off-screen horizontally (view space)
       const rect = wrap.getBoundingClientRect();
       const sizePx = wrap._sizePx || 0;
+      const viewportW = Math.max(1, window.innerWidth || document.documentElement.clientWidth || 0);
       const isOffScreenLeft = rect.right < -sizePx;
-      const isOffScreenRight = rect.left > window.innerWidth + sizePx;
+      const isOffScreenRight = rect.left > viewportW + sizePx;
       if (isOffScreenLeft || isOffScreenRight) {
         const fn = wrapCleanup.get(wrap);
         if (typeof fn === 'function') fn();
         return;
       }
 
-      // Despawn logic: mobile uses viewport top, desktop uses world-space top
-      if (isMobile) {
-        // Mobile: despawn when past top of viewport
-        if (rect.bottom < -sizePx) {
-          const fn = wrapCleanup.get(wrap);
-          if (typeof fn === 'function') fn();
-        }
-      } else {
-        // Desktop: despawn when reaching absolute top of the document (world space)
-        const startTopPx = wrap._startTopPx;
-        const travelYPx = wrap._travelYPx;
-        const durationMs = wrap._durationMs;
-        const delayMs = wrap._delayMs || 0;
-        const startTs = wrap._startTs || 0;
-        if (startTopPx != null && travelYPx != null && durationMs != null && startTs) {
-          const elapsed = ts - startTs - delayMs;
-          if (elapsed >= 0) {
-            const progress = elapsed / durationMs;
-            const currentTop = startTopPx - progress * travelYPx; // world-space top position
-            if (currentTop + sizePx < 0) {
-              const fn = wrapCleanup.get(wrap);
-              if (typeof fn === 'function') fn();
-            }
-          }
-        }
+      // Despawn once bubble rises past the top edge of the viewport
+      if (rect.bottom < -sizePx) {
+        const fn = wrapCleanup.get(wrap);
+        if (typeof fn === 'function') fn();
       }
     });
     lastTs = ts;
