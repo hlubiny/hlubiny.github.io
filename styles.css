@@ -378,7 +378,7 @@ section {
 }
 
 .section--about {
-  overflow: hidden;
+  overflow: visible; /* Umožní light-trays přesahovat bez ořezu */
 }
 
 .section-about__bg {
@@ -1155,6 +1155,7 @@ section {
     height: 700px;
     min-height: 700px;
     padding: 0;
+    overflow: visible !important; /* Umožní light-trays přesahovat bez ořezu */
   }
 
   .section--about .layout-boundary {
