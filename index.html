@@ -62,10 +62,7 @@
 
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__background" aria-hidden="true">
-          <img class="hero__frame" src="graphics/figma/hero-sequence.png" alt="Podmořský svět Hlubiny" />
-          <img src="graphics/figma/hero-light-trays.png" alt="Světelné pruhy" class="hero__light" />
-          <img src="graphics/figma/ellipse-2.png" alt="" class="hero__halo hero__halo--left" />
-          <img src="graphics/figma/ellipse-3.png" alt="" class="hero__halo hero__halo--right" />
+          <img class="hero__frame" src="graphics/figma/hero-frame.png" alt="Podmořský svět Hlubiny" />
         </div>
         <div class="layout-boundary hero__inner">
           <div class="hero__copy">
@@ -83,6 +80,11 @@
       </section>
 
       <section id="o-projektu" class="section section--about" aria-labelledby="about-title">
+        <div class="section-about__bg" aria-hidden="true">
+          <img src="graphics/figma/light-trays.png" alt="" class="section-about__light" />
+          <img src="graphics/figma/ellipse-2.png" alt="" class="section-about__halo section-about__halo--right" />
+          <img src="graphics/figma/ellipse-3.png" alt="" class="section-about__halo section-about__halo--left" />
+        </div>
         <div class="layout-boundary section__grid">
           <div class="section__label">O PROJEKTU</div>
           <div class="section__content">
@@ -112,7 +114,7 @@
               <img src="graphics/figma/gallery-2.png" alt="Herní prostředí" />
             </figure>
             <figure class="gallery__tile gallery__tile--c" role="listitem">
-              <video class="gallery__video" src="graphics/Nazev_Hlubiny2_optimized.webm" autoplay muted loop playsinline poster="graphics/figma/gallery-3.png"></video>
+              <img src="graphics/figma/gallery-3.png" alt="Projekt na plátně" />
             </figure>
             <figure class="gallery__tile gallery__tile--d" role="listitem">
               <img src="graphics/figma/gallery-5.png" alt="Pohled do kopule" />
@@ -179,13 +181,6 @@
         </div>
       </section>
     </main>
-
-    <footer class="site-footer" role="contentinfo">
-      <div class="layout-boundary footer__inner">
-        <span class="footer__brand">HLUBINY</span>
-        <span class="footer__meta">© <span id="year"></span> Hlubiny</span>
-      </div>
-    </footer>
 
   </body>
   </html>

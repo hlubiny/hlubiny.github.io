@@ -263,31 +263,6 @@ section {
   object-fit: cover;
 }
 
-.hero__light {
-  mix-blend-mode: screen;
-  opacity: 0.65;
-  z-index: 2;
-}
-
-.hero__halo {
-  width: 100%;
-  opacity: 0.65;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hero__halo--left {
-  top: 12%;
-  left: -18%;
-  transform: scale(1.08);
-}
-
-.hero__halo--right {
-  bottom: 8%;
-  right: -22%;
-  transform: scale(1.12);
-}
-
 .hero__inner {
   position: relative;
   display: flex;
@@ -336,6 +311,46 @@ section {
 
 .section--about .layout-boundary {
   padding: 130px 95px;
+}
+
+.section--about {
+  overflow: hidden;
+}
+
+.section-about__bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.section-about__light {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  width: 140%;
+  max-width: none;
+  transform: translateX(-50%);
+  opacity: 0.9;
+}
+
+.section-about__halo {
+  position: absolute;
+  width: 75%;
+  height: auto;
+  opacity: 0.8;
+  filter: blur(0.5px);
+}
+
+.section-about__halo--right {
+  top: 40px;
+  right: -18%;
+}
+
+.section-about__halo--left {
+  bottom: -120px;
+  left: -22%;
 }
 
 .section--mechanics .layout-boundary {
@@ -466,25 +481,28 @@ section {
   max-width: 789px;
 }
 
+
 .gallery__inner {
   position: relative;
   width: min(100%, var(--layout-width));
   margin: 0 auto;
+  min-height: 1180px;
 }
 
 .gallery__card {
-  width: 680px;
-  margin-left: 380px;
-  margin-bottom: 120px;
-  background: rgba(17, 42, 55, 0.72);
-  padding: 44px 40px;
-  border-radius: 32px;
-  border: 1px solid rgba(198, 225, 186, 0.25);
-  box-shadow: 0 30px 120px rgba(14, 32, 45, 0.6);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 440px;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+  align-items: center;
   text-align: center;
+  z-index: 2;
 }
 
 .gallery__headline {
@@ -493,31 +511,32 @@ section {
   font-weight: 600;
   color: var(--color-text-secondary);
   margin: 0;
+  text-align: center;
 }
 
 .gallery__meta {
-  margin: 0 auto;
+  margin: 0;
   color: var(--color-text-primary);
   opacity: 0.82;
   font-size: 0.95rem;
   line-height: 1.5;
-  max-width: 326px;
+  max-width: 340px;
+  text-align: center;
 }
 
 .gallery__mosaic {
-  position: relative;
-  width: min(100%, var(--layout-width));
-  margin: 120px auto 0;
-  height: 1305px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1100px;
+  height: 1180px;
+  z-index: 1;
 }
 
 .gallery__tile {
   position: absolute;
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(8, 18, 26, 0.65);
-  border: 1px solid rgba(198, 225, 186, 0.22);
-  box-shadow: 0 18px 70px rgba(28, 52, 40, 0.45);
+  display: block;
 }
 
 .gallery__tile img,
@@ -529,38 +548,38 @@ section {
 }
 
 .gallery__tile--a {
-  width: 212px;
-  height: 282px;
-  left: 65px;
-  top: 441px;
+  width: 276px;
+  height: 360px;
+  left: 24px;
+  top: 382px;
 }
 
 .gallery__tile--b {
-  width: 354px;
-  height: 199px;
-  left: 366px;
-  top: 170px;
+  width: 470px;
+  height: 226px;
+  left: 330px;
+  top: 96px;
 }
 
 .gallery__tile--c {
-  width: 353px;
-  height: 199px;
-  left: 303px;
-  top: 897px;
+  width: 476px;
+  height: 284px;
+  left: 258px;
+  top: 852px;
 }
 
 .gallery__tile--d {
-  width: 220px;
-  height: 292px;
-  left: 1047px;
-  top: 170px;
+  width: 286px;
+  height: 332px;
+  left: 824px;
+  top: 108px;
 }
 
 .gallery__tile--e {
-  width: 338px;
-  height: 231px;
-  left: 970px;
-  top: 766px;
+  width: 426px;
+  height: 274px;
+  left: 772px;
+  top: 722px;
 }
 
 .gallery__video {
@@ -604,12 +623,6 @@ section {
 
 .how__shot {
   width: 161px;
-  height: 382px;
-  border-radius: 22px;
-  overflow: hidden;
-  background: rgba(198, 225, 186, 0.08);
-  border: 1px solid rgba(198, 225, 186, 0.28);
-  box-shadow: 0 30px 120px rgba(12, 24, 36, 0.6), inset 0 0 0 1px rgba(198, 225, 186, 0.08);
 }
 
 .how__shot img {
@@ -650,13 +663,6 @@ section {
 }
 
 .approach__media {
-  width: 308px;
-  height: 464px;
-  border-radius: 32px;
-  padding: 22px;
-  background: rgba(198, 225, 186, 0.08);
-  border: 1px solid rgba(198, 225, 186, 0.22);
-  box-shadow: 0 42px 120px rgba(16, 33, 44, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -728,30 +734,6 @@ section {
   max-width: 677px;
 }
 
-.site-footer {
-  padding-block: 72px 42px;
-  background: transparent;
-}
-
-.footer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-  color: rgba(246, 246, 246, 0.6);
-  font-size: 0.9rem;
-}
-
-.footer__brand {
-  font-family: "PicNic", "Archivo", system-ui, sans-serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
-}
-
-.footer__meta {
-  opacity: 0.8;
-}
-
 /* Bubbles layer */
 #bubbles-layer {
   position: fixed;
@@ -817,6 +799,15 @@ section {
     margin-left: auto;
     margin-right: auto;
   }
+
+  .gallery__inner {
+    min-height: 1080px;
+  }
+
+  .gallery__mosaic {
+    width: min(100%, 880px);
+    height: 1080px;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -856,6 +847,19 @@ section {
   .gallery__card {
     margin: 0 auto 48px;
     width: min(100%, 520px);
+    align-items: center;
+    text-align: center;
+    position: static;
+    transform: none;
+    max-width: none;
+  }
+
+  .gallery__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    min-height: auto;
   }
 
   .gallery__mosaic {
@@ -865,6 +869,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 24px;
+    justify-self: center;
   }
 
   .gallery__tile {
@@ -872,6 +877,20 @@ section {
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 3;
+  }
+
+  .gallery__headline,
+  .gallery__meta {
+    text-align: center;
+  }
+
+  .gallery__tile--a,
+  .gallery__tile--b,
+  .gallery__tile--c,
+  .gallery__tile--d,
+  .gallery__tile--e {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .how__inner,
@@ -888,6 +907,19 @@ section {
     align-items: center;
     text-align: center;
     padding: 0;
+  }
+
+  .section-about__light {
+    top: -140px;
+    width: 180%;
+  }
+
+  .section-about__halo--right {
+    right: -26%;
+  }
+
+  .section-about__halo--left {
+    left: -30%;
   }
 
   .contact__details {
@@ -962,6 +994,15 @@ section {
   .section--mars .layout-boundary,
   .section--contact .layout-boundary {
     padding: clamp(96px, 22vw, 140px) 24px;
+  }
+
+  .section-about__light {
+    top: -120px;
+    width: 220%;
+  }
+
+  .section-about__halo {
+    width: 120%;
   }
 }
 
