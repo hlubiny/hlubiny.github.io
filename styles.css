@@ -1024,23 +1024,32 @@ section {
   }
 
   /* Ensure full-width backgrounds and gradients */
-  /* Position gradient at bottom of page - attach to bottom of document */
-  body {
-    position: relative;
+  /* On mobile: turn off scrolling background and pin a bottom gradient */
+  body::before {
+    display: none !important;
   }
 
-  body::before {
-    width: 100vw !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
-    bottom: 0 !important;
-    position: fixed !important;
-    height: 100vh !important;
-    inset: unset !important;
-    background-size: 100% 100% !important;
-    background-position: bottom !important;
-    transform: none !important;
+  body::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70vh;
+    z-index: -2;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(13, 31, 45, 0) 0%,
+        rgba(13, 31, 45, 1) 26%,
+        rgba(26, 47, 63, 0.9) 63%,
+        rgba(18, 43, 60, 0.85) 82%,
+        rgba(10, 24, 35, 0.95) 100%
+      ),
+      radial-gradient(120% 120% at 50% 0%, rgba(105, 139, 122, 0.18) 0%, rgba(13, 31, 45, 0) 60%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: bottom;
   }
 
   .hero__background {
