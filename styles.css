@@ -383,7 +383,7 @@ section {
   min-height: 400px; /* Ensure section has height */
   display: block;
   position: relative;
-  margin-top: -220px; /* Úplně blízko k textu "O projektu" */
+  margin-top: -280px; /* Úplně blízko k textu "O projektu" */
 }
 
 .section--video-between .layout-boundary {
