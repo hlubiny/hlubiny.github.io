@@ -1260,16 +1260,17 @@ section {
     min-height: 947px;
   }
 
+  section.section.section--gallery .layout-boundary,
   .section--gallery .layout-boundary {
-    width: 100%;
-    max-width: 100%;
-    height: 947px;
-    padding: 91px 0 78px;
-    display: flex;
-    flex-direction: column;
-    gap: 550px;
-    align-items: center;
-    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 947px !important;
+    padding: 91px 0 78px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 550px !important;
+    align-items: center !important;
+    position: relative !important;
   }
 
   .gallery__inner {
@@ -1317,18 +1318,20 @@ section {
 
   /* Fotky: position absolute, y: 312.5, gap 43px, borderRadius 8px */
   /* Centrováno horizontálně - Layout 96JTRR: column, justifyContent center, alignItems center, gap 43px */
-  .gallery__mosaic {
-    position: absolute;
-    top: 312.5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(375px - 175px);
-    max-width: calc(100% - 175px);
-    display: flex;
-    flex-direction: column;
-    gap: 43px;
-    align-items: center;
-    justify-content: center;
+  /* FORCE mobile gallery centering */
+  .gallery__mosaic,
+  div.gallery__mosaic {
+    position: absolute !important;
+    top: 312.5px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(375px - 175px) !important;
+    max-width: calc(100% - 175px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 43px !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .gallery__tile {
