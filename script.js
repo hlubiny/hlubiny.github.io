@@ -46,6 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Ensure the Zelena_koule_chobotnice video autoplays
+  const betweenVideo = document.querySelector('.section-video-between__video');
+  if (betweenVideo) {
+    betweenVideo.setAttribute('autoplay', '');
+    betweenVideo.setAttribute('muted', '');
+    betweenVideo.setAttribute('playsinline', '');
+    betweenVideo.setAttribute('loop', '');
+    
+    // Force play attempt
+    const playPromise = betweenVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay was prevented - try again on user interaction
+        document.addEventListener('click', () => {
+          betweenVideo.play().catch(() => {});
+        }, { once: true });
+      });
+    }
+  }
+
   // Bubble spawner configuration
   const debugBubbles = false; // toggle to true if you need to debug visuals
   const config = {
