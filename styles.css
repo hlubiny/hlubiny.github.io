@@ -752,6 +752,7 @@ section {
   grid-template-columns: 420px minmax(0, 1fr);
   gap: 97px;
   align-items: center;
+  margin-top: -50px; /* Posunuto nahoru o 50px */
 }
 
 .approach__copy {
@@ -1659,6 +1660,7 @@ section {
     gap: 10px;
     padding: 15px 0;
     align-items: flex-start; /* Zarovnání vlevo */
+    margin-top: -50px; /* Posunuto nahoru o 50px */
   }
 
   /* Text - Přístup: gap 22px, padding s jednotným marginem */
