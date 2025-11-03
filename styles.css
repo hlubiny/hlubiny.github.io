@@ -1641,17 +1641,16 @@ section {
   }
 
   /* Container - Kontakty: height 419px, padding 50px 24px 59px, gap 19px */
-  /* Gradient je součástí sekce, ne fixní overlay */
+  /* Kontaktní sekce JAKOBY JE footer - končí tam web */
   .section--contact {
     width: 100%;
     max-width: 100%;
     height: 419px;
     min-height: 419px;
     position: relative;
-    background: linear-gradient(180deg, rgba(13, 31, 45, 1) 31%, rgba(198, 225, 186, 0.78) 100%) !important;
-    background-attachment: scroll !important;
-    background-position: bottom !important;
-    background-size: 100% 100% !important;
+    background: linear-gradient(180deg, rgba(13, 31, 45, 1) 31%, rgba(198, 225, 186, 0.78) 100%);
+    background-size: 100% 100%;
+    margin-bottom: 0;
   }
 
   .section--contact .layout-boundary {
@@ -1672,79 +1671,78 @@ section {
     gap: 19px;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
-  /* Frame 30 */
+  /* Frame 30 - všechny elementy centrovány */
   .contact__top {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0;
     align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .contact__copy {
-    width: 100% !important;
-    gap: 10px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    padding: 0 !important;
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
   }
 
+  /* Všechny texty perfektně na střed podle Figma */
   .contact__headline {
-    font-size: 20px !important;
-    line-height: 1.35 !important;
-    font-weight: 400 !important;
-    color: rgba(246, 246, 246, 0.76) !important;
-    text-align: center !important;
-    margin: 0 !important;
-    width: 100% !important;
-    align-self: center !important;
-    max-width: none !important;
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: rgba(246, 246, 246, 0.76);
+    text-align: center;
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
   }
 
-  /* Frame 29: gap 6px */
+  /* Frame 29: gap 6px - všechny odkazy centrovány */
   .contact__details {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     padding: 0;
-  }
-
-  /* style_12ZH1T: textAlignHorizontal CENTER (podle Figma) */
-  /* Zvětšená velikost pro čitelnost */
-  .contact__mail {
-    font-size: 11px;
-    line-height: 1.35;
-    font-weight: 400;
     text-align: center;
-    width: 100%;
-    color: var(--color-text-primary);
   }
 
-  /* style_0JM4R6: textAlignHorizontal CENTER */
-  /* Zvětšená velikost pro čitelnost */
+  /* Email a Instagram - centrovány a čitelné */
+  .contact__mail,
   .contact__social {
     font-size: 11px;
     line-height: 1.35;
     font-weight: 400;
     text-align: center;
-    width: 100%;
+    width: auto;
     color: var(--color-text-primary);
   }
 
-  /* Frame 31: padding 89px 0px 0px, width 95px, height 34px */
+  .contact__link {
+    text-align: center;
+  }
+
+  /* Logo na spodu - centrováno */
   .contact__mark {
-    margin: 89px 0 0;
+    margin: 40px auto 0;
     max-width: 250px;
     width: 250px;
     height: auto;
     object-fit: contain;
+    display: block;
   }
 
   /* Desktop specific adjustments for mobile */
