@@ -62,7 +62,11 @@
 
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__background" aria-hidden="true">
-          <img class="hero__frame" src="graphics/figma/hero-frame.png" alt="Podmořský svět Hlubiny" />
+          <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="graphics/videos/hero-fallback-screenshot.png">
+            <source src="graphics/videos/hero-video-mobile-web.mp4" type="video/mp4" media="(max-width: 768px)" />
+            <source src="graphics/videos/hero-video-desktop-web.mp4" type="video/mp4" />
+            <img src="graphics/videos/hero-fallback-screenshot.png" alt="Hlubiny hero background" class="hero__video-fallback" />
+          </video>
         </div>
         <div class="layout-boundary hero__inner">
           <div class="hero__copy">
