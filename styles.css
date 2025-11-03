@@ -1180,25 +1180,32 @@ section {
     align-items: flex-start;
   }
 
-  /* Frame 22 117:380 - padding: 0px 26px 0px 0px */
+  /* Frame 22 117:380 - padding: 0px 26px 0px 0px, alignItems: center, justifyContent: center */
   .section--about .section__content {
     gap: 10px;
     padding: 0 26px 0 0;
     align-items: center;
     text-align: center;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .section--about .section__headline {
     text-align: center;
     font-size: 16px;
     line-height: 1.2;
+    font-weight: 600;
+    margin: 0;
   }
 
   .section--about .section__body {
     text-align: left;
     font-size: 11px;
     line-height: 1.4545;
+    font-weight: 400;
+    margin: 0;
   }
 
   /* Container - H mechaniky 117:310 - height: 550px */
@@ -1233,6 +1240,7 @@ section {
     font-weight: 600;
     text-align: center;
     max-width: 100%;
+    margin: 0;
   }
 
   /* Container - FinalFin 117:313 - height: 947px, padding: 91px 0px 78px, gap: 550px */
@@ -1313,8 +1321,12 @@ section {
 
   .gallery__tile {
     position: static;
-    border-radius: 8px;
-    box-shadow: 1px 1px 27.1px 1px rgba(198, 225, 186, 0.8), inset 1px 1px 5.2px 0px rgba(198, 225, 186, 1);
+    border-radius: 24px;
+    filter: drop-shadow(0 0 30px rgba(198, 225, 186, .6)) drop-shadow(0 0 60px rgba(198, 225, 186, 0.6)) drop-shadow(0 0 90px rgba(198, 225, 186, 0.4));
+  }
+
+  .gallery__tile img {
+    border-radius: 24px;
   }
 
   .gallery__tile--a {
@@ -1377,7 +1389,7 @@ section {
   /* Text - O projektu 117:327 - padding: 0px 112px 0px 24px, gap: 15px */
   .how__copy {
     width: 100%;
-    padding: 0 24px;
+    padding: 0 112px 0 24px;
     gap: 15px;
     max-width: 100%;
     display: flex;
@@ -1390,6 +1402,7 @@ section {
     font-weight: 500;
     max-width: 100%;
     margin: 0;
+    text-align: left;
   }
 
   /* Frame 9 117:330 - padding: 0px 48px, gap: 32px */
@@ -1450,7 +1463,7 @@ section {
     margin: 0;
   }
 
-  /* Frame 26 117:386 - padding: 0px 72px, height: 48px */
+  /* Frame 26 117:386 - padding: 0px 72px, height: 48px, alignItems: center, justifyContent: center */
   .section--marine .section__body--highlight {
     font-size: 8px;
     line-height: 1.35;
@@ -1463,6 +1476,7 @@ section {
     text-align: center;
     margin: 0;
     color: var(--color-text-primary);
+    width: 100%;
   }
 
   /* Container - Pristup 117:337 - height: 653px, padding: 162px 24px 200px */
@@ -1507,6 +1521,7 @@ section {
     font-weight: 600;
     max-width: 100%;
     margin: 0;
+    text-align: left;
   }
 
   /* Frame 19 117:342 - padding: 21px 93px */
