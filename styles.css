@@ -1229,30 +1229,31 @@ section {
   .section--mechanics .layout-boundary {
     width: 100%;
     height: 550px;
-    padding: 0 24px;
+    padding: 20px 24px 0 24px; /* Posunuto dolů jako "O projektu" */
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* Text: height 283px, padding 0px 24px, gap 30px */
+  /* Text: height 283px, padding s jednotným marginem, gap 30px */
   .section--mechanics .section__centered {
     width: 100%;
     height: 283px;
-    padding: 0 24px;
+    padding: 0 29px 0 35px; /* Jednotný margin jako "O projektu" */
     gap: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Zarovnání vlevo */
   }
 
   .section--mechanics .section__strap {
-    font-size: 16px;
+    font-size: 20px; /* Zvětšeno na jednotnou velikost */
     line-height: 1.2;
     font-weight: 600;
-    text-align: center;
+    text-align: left; /* Zarovnání vlevo */
     margin: 0;
+    width: 100%;
   }
 
   /* Container - FinalFin: height 947px, padding 91px 0px 78px, gap 550px */
@@ -1429,25 +1430,26 @@ section {
     padding: 0 0 191px;
   }
 
-  /* Text - O projektu: padding 0px 112px 0px 24px, gap 15px */
+  /* Text - Jak to funguje: padding s jednotným marginem, gap 15px */
   .how__copy {
     width: 100%;
-    padding: 0 112px 0 24px;
+    padding: 0 29px 0 35px; /* Jednotný margin */
     gap: 15px;
     display: flex;
     flex-direction: column;
   }
 
   .how__copy .section__label {
-    font-size: 8px;
+    font-size: 11px; /* Zvětšeno na jednotnou velikost */
     letter-spacing: 0.28em;
     font-weight: 500;
+    text-align: left;
   }
 
   .how__headline {
-    font-size: 8px;
-    line-height: 1.35;
-    font-weight: 500;
+    font-size: 20px; /* Zvětšeno na jednotnou velikost */
+    line-height: 1.2;
+    font-weight: 600;
     color: var(--color-text-secondary);
     margin: 0;
     text-align: left;
@@ -1492,50 +1494,50 @@ section {
   .section--marine .layout-boundary {
     width: 100%;
     height: 375px;
-    padding: 0 24px 18px;
+    padding: 20px 24px 18px 24px; /* Posunuto dolů jako "O projektu" */
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* Text: height 147px, padding 0px 24px 18px, gap 22px */
+  /* Text: height 147px, padding s jednotným marginem, gap 22px */
   .section--marine .section__centered {
     width: 100%;
     height: 147px;
-    padding: 0;
+    padding: 0 29px 0 35px; /* Jednotný margin */
     gap: 22px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Zarovnání vlevo */
   }
 
-  /* Frame 25: height 40px, Mobile H2: textAlignHorizontal CENTER */
+  /* Frame 25: height 40px */
   .section--marine .section__headline {
-    font-size: 20px;
-    line-height: 1.088;
+    font-size: 20px; /* Už má správnou velikost */
+    line-height: 1.2;
     font-weight: 600;
     color: var(--color-text-secondary);
-    height: 40px;
+    height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin: 0;
-    text-align: center;
+    text-align: left; /* Zarovnání vlevo */
     width: 100%;
   }
 
-  /* Frame 26: padding 0px 72px, height 48px, Mobile H5: textAlignHorizontal CENTER */
+  /* Frame 26: height 48px */
   .section--marine .section__body--highlight {
-    font-size: 8px;
-    line-height: 1.35;
-    font-weight: 500;
-    padding: 0 72px;
-    height: 48px;
+    font-size: 14px; /* Zvětšeno na jednotnou velikost */
+    line-height: 1.4545;
+    font-weight: 400;
+    padding: 0;
+    height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left; /* Zarovnání vlevo */
     margin: 0;
     color: var(--color-text-primary);
     width: 100%;
@@ -1568,23 +1570,25 @@ section {
     padding: 15px 0;
   }
 
-  /* Text - O projektu: gap 22px */
+  /* Text - Přístup: gap 22px, padding s jednotným marginem */
   .approach__copy {
     width: 100%;
     gap: 22px;
+    padding: 0 29px 0 35px; /* Jednotný margin */
     display: flex;
     flex-direction: column;
   }
 
   .approach__copy .section__label {
-    font-size: 8px;
+    font-size: 11px; /* Zvětšeno na jednotnou velikost */
     letter-spacing: 0.28em;
     font-weight: 500;
+    text-align: left;
   }
 
   /* Mobile H3: textAlignHorizontal LEFT */
   .approach__headline {
-    font-size: 16px;
+    font-size: 20px; /* Zvětšeno na jednotnou velikost */
     line-height: 1.2;
     font-weight: 600;
     color: var(--color-text-secondary);
@@ -1617,44 +1621,45 @@ section {
 
   .section--mars .layout-boundary {
     width: 100%;
-    padding: 0 24px;
+    padding: 20px 24px 0 24px; /* Posunuto dolů jako "O projektu" */
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* Text - O projektu: gap 15px, padding 0px 24px */
+  /* Text - Mars: gap 15px, padding s jednotným marginem */
   .section--mars .section__centered {
     width: 100%;
     gap: 15px;
-    padding: 0;
+    padding: 0 29px 0 35px; /* Jednotný margin */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Zarovnání vlevo */
   }
 
   /* Frame 28 */
   .section--mars .section__headline {
-    font-size: 20px;
-    line-height: 1.088;
+    font-size: 20px; /* Už má správnou velikost */
+    line-height: 1.2;
     font-weight: 600;
     color: var(--color-text-secondary);
     margin: 0;
-    text-align: center;
+    text-align: left; /* Zarovnání vlevo */
+    width: 100%;
   }
 
-  /* Frame 27: padding 0px 48px, height 53px, Mobile H5: textAlignHorizontal CENTER */
+  /* Frame 27: height 53px */
   .section--mars .section__body {
-    font-size: 8px;
-    line-height: 1.35;
-    font-weight: 500;
-    padding: 0 48px;
-    height: 53px;
+    font-size: 14px; /* Zvětšeno na jednotnou velikost */
+    line-height: 1.4545;
+    font-weight: 400;
+    padding: 0;
+    height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left; /* Zarovnání vlevo */
     margin: 0;
     color: var(--color-text-primary);
     width: 100%;
@@ -1723,9 +1728,9 @@ section {
   .contact__headline,
   h2.contact__headline,
   #contact-title.contact__headline {
-    font-size: 20px !important;
-    line-height: 1.35 !important;
-    font-weight: 400 !important;
+    font-size: 20px !important; /* Zvětšeno na jednotnou velikost */
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
     color: rgba(246, 246, 246, 0.76) !important;
     text-align: center !important;
     margin: 0 auto !important;
@@ -1752,8 +1757,8 @@ section {
   a.contact__social,
   .contact__mail,
   .contact__social {
-    font-size: 11px !important;
-    line-height: 1.35 !important;
+    font-size: 14px !important; /* Zvětšeno na jednotnou velikost */
+    line-height: 1.4545 !important;
     font-weight: 400 !important;
     text-align: center !important;
     width: auto !important;
