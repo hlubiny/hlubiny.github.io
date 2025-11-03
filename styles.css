@@ -392,10 +392,10 @@ section {
   width: 140%;
   max-width: none;
   transform: translateX(-50%);
-  opacity: 0.9;
+  opacity: 0.6;
   z-index: 0; /* Nad videem (z-index: -1), ale pod textem */
   pointer-events: none;
-  mix-blend-mode: screen; /* Jemné prolínání */
+  mix-blend-mode: lighten; /* Jemné prolínání */
 }
 
 .section-about__halo {
