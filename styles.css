@@ -1280,7 +1280,7 @@ section {
   }
 
   /* Frame 16: width 327px, height 128px, padding 0px 24px, gap 7px */
-  /* FORCE remove box-shadow */
+  /* FORCE remove box-shadow a perfektní centrování textu */
   div.gallery__card,
   .gallery__card {
     position: absolute !important;
@@ -1303,22 +1303,30 @@ section {
     -moz-box-shadow: none !important;
   }
 
-  /* Frame 21: padding 0px 8px */
-  .gallery__headline {
-    font-size: 16px;
-    line-height: 1.2;
-    font-weight: 600;
-    padding: 0 8px;
-    margin: 0;
+  /* Frame 21: padding 0px 8px - perfektně centrován */
+  .gallery__headline,
+  h2.gallery__headline {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
-  /* Frame 20: padding 7px 64px 0px */
-  .gallery__meta {
-    font-size: 8px;
-    line-height: 1.35;
-    font-weight: 500;
-    padding: 7px 64px 0;
-    margin: 0;
+  /* Frame 20: padding 7px 64px 0px - perfektně centrován */
+  .gallery__meta,
+  p.gallery__meta {
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+    font-weight: 500 !important;
+    padding: 7px 0 0 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* Fotky: position absolute, y: 312.5, gap 43px, borderRadius 8px */
