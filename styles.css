@@ -1681,6 +1681,34 @@ section {
   .section-about__halo {
     width: 120%;
   }
+
+  /* Remove effects on gallery photos (mobile) */
+  .gallery__tile {
+    filter: none;
+    box-shadow: none;
+  }
+  .gallery__tile img {
+    border-radius: 24px;
+  }
+
+  /* How it works images should not be cropped */
+  .how__shot { height: auto; }
+  .how__shot img { width: 100%; height: auto; object-fit: contain; }
+
+  /* Let bottom sections size naturally to fix gradient seams */
+  .section--gallery,
+  .section--how,
+  .section--marine,
+  .section--approach,
+  .section--contact { height: auto; }
+  .section--gallery .layout-boundary,
+  .section--how .layout-boundary,
+  .section--marine .layout-boundary,
+  .section--approach .layout-boundary,
+  .section--contact .layout-boundary { height: auto; }
+
+  /* Enlarge contact logo on mobile */
+  .contact__mark { width: 180px; height: auto; max-width: 60vw; }
 }
 
 @media (max-width: 520px) {
