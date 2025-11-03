@@ -383,7 +383,7 @@ section {
   min-height: 400px; /* Ensure section has height */
   display: block;
   position: relative;
-  margin-top: -120px; /* Posunuto nahoru - téměř se dotýká textu "O projektu" */
+  margin-top: -160px; /* Posunuto ještě blíž k textu "O projektu" */
 }
 
 .section--video-between .layout-boundary {
@@ -1263,7 +1263,7 @@ section {
     min-height: 300px; /* Ensure section has height on mobile */
     display: block;
     position: relative;
-    margin-top: -80px !important; /* Posunuto nahoru - téměř se dotýká textu "O projektu" */
+    margin-top: -120px !important; /* Posunuto ještě blíž k textu "O projektu" */
   }
 
   .section--video-between .layout-boundary {
