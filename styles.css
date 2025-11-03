@@ -383,10 +383,11 @@ section {
   min-height: 400px; /* Ensure section has height */
   display: block;
   position: relative;
+  margin-top: -60px; /* Posunuto blíž k textu "O projektu" */
 }
 
 .section--video-between .layout-boundary {
-  padding: 80px 95px;
+  padding: 40px 95px 40px 95px; /* Snížený padding nahoře - blíž k textu */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -401,6 +402,7 @@ section {
   border-radius: 16px;
   display: block;
   object-fit: contain;
+  mix-blend-mode: lighten; /* Prolnutí s pozadím */
   background: rgba(13, 31, 45, 0.3); /* Temporary background to see video container */
 }
 
@@ -445,7 +447,7 @@ section {
 }
 
 .section--mechanics .layout-boundary {
-  padding: 200px 95px;
+  padding: 40px 95px 200px 95px; /* Snížený padding nahoře - blíž k videu */
   display: flex;
   justify-content: center;
 }
@@ -1255,11 +1257,12 @@ section {
   .section--video-between {
     width: 100%;
     max-width: 100%;
-    padding: 40px 0;
+    padding: 20px 0; /* Snížený padding - blíž k textu */
     overflow: hidden;
     min-height: 300px; /* Ensure section has height on mobile */
     display: block;
     position: relative;
+    margin-top: -40px !important; /* Posunuto blíž k textu "O projektu" */
   }
 
   .section--video-between .layout-boundary {
@@ -1279,6 +1282,7 @@ section {
     border-radius: 12px;
     display: block;
     object-fit: contain;
+    mix-blend-mode: lighten !important; /* Prolnutí s pozadím */
     background: rgba(13, 31, 45, 0.3); /* Temporary background to see video container */
   }
 
@@ -1293,10 +1297,11 @@ section {
   .section--mechanics .layout-boundary {
     width: 100%;
     height: 550px;
-    padding: 20px 24px 0 24px; /* Posunuto dolů jako "O projektu" */
+    padding: 20px 24px 0 24px; /* Snížený padding nahoře - blíž k videu */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -20px !important; /* Blíž k okraji videa */
   }
 
   /* Text: height 283px, padding s jednotným marginem, gap 30px */
