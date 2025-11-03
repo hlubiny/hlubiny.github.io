@@ -453,6 +453,10 @@ section {
   margin-top: -80px; /* Posunuto nahoru pod video */
 }
 
+.section--gallery {
+  margin-top: -150px; /* Posunuto nahoru o 150px */
+}
+
 .section--gallery .layout-boundary {
   padding: 220px 0;
 }
@@ -1332,6 +1336,7 @@ section {
     max-width: 100%;
     height: 947px;
     min-height: 947px;
+    margin-top: -150px !important; /* Posunuto nahoru o 150px */
   }
 
   section.section.section--gallery .layout-boundary,
