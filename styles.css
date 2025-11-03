@@ -1,3 +1,14 @@
+/* Zakázání pinch zoom na všech zařízeních */
+html {
+  touch-action: manipulation; /* Zakáže pinch zoom, ale umožňuje scroll a tap */
+  -ms-touch-action: manipulation;
+}
+
+body {
+  touch-action: manipulation; /* Zakáže pinch zoom, ale umožňuje scroll a tap */
+  -ms-touch-action: manipulation;
+}
+
 :root {
   --color-bg: #0d1f2d;
   --color-surface: #11293a;
@@ -817,7 +828,7 @@ section {
   line-height: 1.2;
   font-weight: 600;
   color: rgba(246, 246, 246, 0.86);
-  margin: 0;
+  margin: 0 0 10px 0; /* Spodní margin pro mezeru před emailem */
   max-width: 633px;
   align-self: flex-start;
 }
@@ -1806,7 +1817,7 @@ section {
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 0 !important;
+    gap: 10px !important; /* Mezera mezi "Kontaktujte nás" a email */
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;

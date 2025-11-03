@@ -1,4 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Zakázání pinch zoom na iOS a dalších zařízeních
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length > 1) {
+      e.preventDefault(); // Blokuje pinch zoom
+    }
+  }, { passive: false });
+  
+  document.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 1) {
+      e.preventDefault(); // Blokuje pinch zoom
+    }
+  }, { passive: false });
+  
+  document.addEventListener('gesturestart', (e) => {
+    e.preventDefault(); // Blokuje gesture zoom na iOS
+  });
+  
+  document.addEventListener('gesturechange', (e) => {
+    e.preventDefault(); // Blokuje gesture zoom na iOS
+  });
+  
+  document.addEventListener('gestureend', (e) => {
+    e.preventDefault(); // Blokuje gesture zoom na iOS
+  });
+
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
