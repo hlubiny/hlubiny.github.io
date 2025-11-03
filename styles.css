@@ -1640,9 +1640,8 @@ section {
     width: 100%;
   }
 
-  /* Container - Kontakty: height 419px, padding 50px 24px 59px, gap 19px */
-  /* Kontaktní sekce JAKOBY JE footer - končí tam web */
-  /* Použito !important kvůli přepsání desktop stylů */
+  /* FORCE MOBILE CONTACT SECTION - přepíše všechny desktop styly */
+  section.section.section--contact,
   .section--contact {
     width: 100% !important;
     max-width: 100% !important;
@@ -1653,8 +1652,10 @@ section {
     background-size: 100% 100% !important;
     background-attachment: scroll !important;
     margin-bottom: 0 !important;
+    color: rgba(8, 21, 30, 0.92) !important;
   }
 
+  section.section.section--contact .layout-boundary,
   .section--contact .layout-boundary {
     width: 100% !important;
     height: 419px !important;
@@ -1677,7 +1678,6 @@ section {
     min-height: auto !important;
   }
 
-  /* Frame 30 - všechny elementy centrovány */
   .contact__top {
     width: 100% !important;
     display: flex !important;
@@ -1700,8 +1700,9 @@ section {
     padding-left: 0 !important;
   }
 
-  /* Všechny texty perfektně na střed podle Figma */
-  .contact__headline {
+  .contact__headline,
+  h2.contact__headline,
+  #contact-title.contact__headline {
     font-size: 20px !important;
     line-height: 1.35 !important;
     font-weight: 400 !important;
@@ -1713,7 +1714,6 @@ section {
     align-self: center !important;
   }
 
-  /* Frame 29: gap 6px - všechny odkazy centrovány */
   .contact__details {
     width: 100% !important;
     display: flex !important;
@@ -1728,7 +1728,8 @@ section {
     align-self: center !important;
   }
 
-  /* Email a Instagram - centrovány a čitelné */
+  a.contact__mail,
+  a.contact__social,
   .contact__mail,
   .contact__social {
     font-size: 11px !important;
@@ -1739,12 +1740,13 @@ section {
     color: var(--color-text-primary) !important;
   }
 
+  a.contact__link,
   .contact__link {
     text-align: center !important;
     color: var(--color-text-primary) !important;
   }
 
-  /* Logo na spodu - centrováno */
+  img.contact__mark,
   .contact__mark {
     margin: 40px auto 0 !important;
     max-width: 250px !important;
