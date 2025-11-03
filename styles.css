@@ -389,14 +389,18 @@ section {
   z-index: -1;
 }
 
+/* Light-trays osvobozený od containeru - překrývá video zespoda */
 .section-about__light {
   position: absolute;
-  top: -180px;
+  top: -100px; /* Překrývá video o cca 100px */
   left: 50%;
   width: 140%;
   max-width: none;
   transform: translateX(-50%);
   opacity: 0.9;
+  z-index: 0; /* Nad videem (z-index: -1), ale pod textem */
+  pointer-events: none;
+  mix-blend-mode: screen; /* Jemné prolínání */
 }
 
 .section-about__halo {
@@ -462,6 +466,8 @@ section {
   grid-template-columns: 180px minmax(0, 1fr);
   gap: 42px;
   align-items: flex-start;
+  position: relative;
+  z-index: 1; /* Nad light-trays */
 }
 
 .section__label {
@@ -1783,10 +1789,12 @@ section {
   }
   
   .section-about__light {
-    top: -120px;
+    top: -100px; /* Překrývá video o cca 100px */
     width: 220%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 0 !important; /* Nad videem, pod textem */
+    mix-blend-mode: screen !important; /* Jemné prolínání */
   }
 
   .section-about__halo {
