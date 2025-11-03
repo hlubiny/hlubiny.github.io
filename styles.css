@@ -1156,18 +1156,18 @@ section {
   .section--about .layout-boundary {
     width: 100%;
     height: 700px;
-    padding: 0 24px;
+    padding: 20px 24px 0 24px; /* Posunuto o 20px níž a lepší levý margin */
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: center;
   }
 
-  /* Text - O projektu: height 290px, gap 15px, padding 0px 14px 0px 0px */
+  /* Text - O projektu: height 290px, gap 15px, padding s větším levým marginem */
   .section--about .section__grid {
     grid-template-columns: 1fr;
     gap: 15px;
-    padding: 0 14px 0 0;
+    padding: 0 14px 0 20px; /* Zvětšený levý margin */
     height: 290px;
     align-items: flex-start;
   }
@@ -1185,17 +1185,18 @@ section {
   }
 
   .section--about .section__label {
-    font-size: 8px;
+    font-size: 9px; /* Mírně zvětšeno */
     letter-spacing: 0.28em;
     font-weight: 500;
     text-align: left;
     justify-content: flex-start;
+    margin-left: 0; /* Zajištění správného odsazení */
   }
 
   /* Frame 22 obsahuje H3, který je LEFT aligned podle Figma (Mobile H3: textAlignHorizontal LEFT) */
   /* Ale Frame 22 sám je center aligned, takže text má být LEFT v centru */
   .section--about .section__headline {
-    font-size: 16px;
+    font-size: 17px; /* Mírně zvětšeno */
     line-height: 1.2;
     font-weight: 600;
     text-align: left;
@@ -1207,7 +1208,7 @@ section {
 
   /* style_GI2W2G: textAlignHorizontal LEFT */
   .section--about .section__body {
-    font-size: 11px;
+    font-size: 12px; /* Mírně zvětšeno */
     line-height: 1.4545;
     font-weight: 400;
     text-align: left;
