@@ -383,7 +383,7 @@ section {
   min-height: 400px; /* Ensure section has height */
   display: block;
   position: relative;
-  margin-top: -60px; /* Posunuto blíž k textu "O projektu" */
+  margin-top: -120px; /* Posunuto nahoru - téměř se dotýká textu "O projektu" */
 }
 
 .section--video-between .layout-boundary {
@@ -447,9 +447,10 @@ section {
 }
 
 .section--mechanics .layout-boundary {
-  padding: 40px 95px 200px 95px; /* Snížený padding nahoře - blíž k videu */
+  padding: 0px 95px 200px 95px; /* Minimal padding nahoře - téměř pod videem */
   display: flex;
   justify-content: center;
+  margin-top: -80px; /* Posunuto nahoru pod video */
 }
 
 .section--gallery .layout-boundary {
@@ -1257,12 +1258,12 @@ section {
   .section--video-between {
     width: 100%;
     max-width: 100%;
-    padding: 20px 0; /* Snížený padding - blíž k textu */
+    padding: 10px 0; /* Minimální padding - téměř se dotýká textu */
     overflow: hidden;
     min-height: 300px; /* Ensure section has height on mobile */
     display: block;
     position: relative;
-    margin-top: -40px !important; /* Posunuto blíž k textu "O projektu" */
+    margin-top: -80px !important; /* Posunuto nahoru - téměř se dotýká textu "O projektu" */
   }
 
   .section--video-between .layout-boundary {
@@ -1297,11 +1298,11 @@ section {
   .section--mechanics .layout-boundary {
     width: 100%;
     height: 550px;
-    padding: 20px 24px 0 24px; /* Snížený padding nahoře - blíž k videu */
+    padding: 10px 24px 0 24px; /* Minimální padding nahoře - téměř pod videem */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -20px !important; /* Blíž k okraji videa */
+    margin-top: -60px !important; /* Posunuto nahoru pod video */
   }
 
   /* Text: height 283px, padding s jednotným marginem, gap 30px */
