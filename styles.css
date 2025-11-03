@@ -1261,7 +1261,7 @@ section {
   }
 
   .section--gallery .layout-boundary {
-    width: 375px;
+    width: 100%;
     max-width: 100%;
     height: 947px;
     padding: 91px 0 78px;
@@ -1315,12 +1315,13 @@ section {
     margin: 0;
   }
 
-  /* Fotky: position absolute, x: 87.5, y: 312.5, gap 43px, borderRadius 8px */
-  /* Layout 96JTRR: column, justifyContent center, alignItems center, gap 43px */
+  /* Fotky: position absolute, y: 312.5, gap 43px, borderRadius 8px */
+  /* Centrováno horizontálně - Layout 96JTRR: column, justifyContent center, alignItems center, gap 43px */
   .gallery__mosaic {
     position: absolute;
     top: 312.5px;
-    left: 87.5px;
+    left: 50%;
+    transform: translateX(-50%);
     width: calc(375px - 175px);
     max-width: calc(100% - 175px);
     display: flex;
