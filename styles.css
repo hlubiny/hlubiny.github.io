@@ -1012,6 +1012,15 @@ section {
 
 /* MOBILE - Clean implementation based on Figma */
 @media (max-width: 768px) {
+  /* Center all fixed-width mobile containers to prevent left offset */
+  .hero,
+  .section,
+  .layout-boundary,
+  .hero__inner,
+  .gallery__inner {
+    margin-left: auto;
+    margin-right: auto;
+  }
   /* Mobile Navigation */
   .mobile-menu-toggle {
     display: block;
